@@ -1,0 +1,297 @@
+#+AUTHOR: David Pham
+#+TITLE: Data analysis tools
+#+SETUPFILE: ~/.emacs.d/packs/lang-code/lib/org-html-themes/setup/theme-readtheorg.setup
+#+HTML_HEAD: <style> pre.src {background: #3F3F3F; color: #DCDCCC;} </style>
+
+* Introduction
+
+  A friend ask me what I would recommend to learn for people wanting to join
+  the field of quantitative finance, machine learning or statistics (the basic
+  skills are similar). He also asked to make some small remarks on why I would
+  choose these tools.
+
+  First of all, this is only a matter of personal taste and they are a lot of
+  reason why someone would learn and act differently, but my hope is that I can
+  provide some justification on why I invested time to learn these tools. I
+  personally use all the following tools on recurrent basis and I would advise
+  to really to learn the basics and use the programs that really help you in
+  your daily work. Obviously, this list does miss few programs/languages, the
+  reason is probably that I can not assert that I used these other language
+  enough to have a decent opinion of them.
+
+  Additional links are provided at the end of the document.
+
+* Quick overview
+  This is a list of tools I genuinely recommend to learn and use in our daily
+  life when interacting with a computer.
+
+  A good point to remember about the suggestions is they originate from my
+  (little) experience and my concern about tractability of the analysis,
+  reproducible research, and productivity.
+
+  Let's get started!  Here is a short version:
+  + *Ubuntu*. Just do yourself a favor and work in an UNIX environment.
+    [[https://ubuntugnome.org/][Ubuntu Gnome homepage]]
+  + *Emacs* as your environment: write and code in any language without ever
+    without leaving your f/j keys in the same consistent environment.
+    [[https://www.gnu.org/software/emacs/][Emacs homepage]] (or [[http://vgoulet.act.ulaval.ca/en/emacs/][here]] for a more friendly-user version).
+  + *Git* and *Github*: modern way for archiving, collaborating and working
+    with files.
+    [[https://git-scm.com/][Git homepage]]
+  + *Pandoc, markdown*: write content and not the formatting. Markdown and pandoc
+    automate most of the editing tasks.
+    [[http://pandoc.org/][Pandoc homepage]]
+  + *Python*: your first and most fun programming language. Learn to create
+    programs (not class) in a funny and interactive fashion.
+    [[https://www.python.org/][Python homepage]]
+  + *R*: your friend for visualizing and analyzing data.
+    [[https://cran.r-project.org/][R CRAN homepage]] and [[https://www.rstudio.com/][RStudio IDE]] (always handy when starting with R).
+
+* Details
+The goal of this section is to provide a basic justification on why I am using
+these programs or framework.
+
+** *Ubuntu*
+   Any Linux distribution would be fine.  However, I would recommend Ubuntu as
+   the first point of entry to the linux world. The advantage over Windows are
+   following.
+   + Open source software: Most advanced tools for data analysis rely on some
+     tools of the UNIX world and their installation is extremely simplified.
+   + Ubiquitous terminal: interacting with several languages, tools is the
+     favored way of creating analysis (small modular pieces).  Using the shell
+     allow us to easily automate the boring tasks with shell scripts.
+   + Remote computations: Most cloud computing services are based on a UNIX
+     distribution.
+
+** Text editor/IDE: *Emacs*
+
+   This topic is probably one of the most controversial.  Most of my work goes
+   around reading and writing. I am unfortunately paid to write and authors
+   things: code for analysis, automating tasks, formatting or cleaning data,
+   and last but not the least, writing documentations and reports.  One of the
+   source of inefficiency when writing documents is the time we move our hands
+   from the keyboard to the mouse in order to move the cursor around a document
+   or characters.  Emacs provide a rich amount of shortcuts to help the user to
+   write everything without leaving the keyboard and it also allows to
+   completely modify them as well.
+   + Truly personal editor: One of the most interesting feature is also
+     that one can really suits Emacs to its need. For example, I have a Swiss
+     keyboard, and deleting backwards is a task I often have to do. However,
+     with my keyboard layout, I have to move little finger to backspace, which
+     disturb my right hand position. Hence, to solve this problem, I simply
+     bound /CTRL-é/ and /ALT-é/ to ~delete-char-backwards~ and
+     ~delete-word-backward~.
+   + One editor for all languages: With Emacs, you will develop code (python,
+     R, C++ and clojure are supported), edit text (LaTeX and Markdown) and use
+     the shell, all with a consistent set of shortcuts that you set.
+
+   Note that I do not claim, it will be easy at the beginning. However, after a
+   few days, Emacs will save you thirty minutes to a hour each day!
+
+** Document generation: *Pandoc* (markdown, LaTeX)
+   Stop using Word or Libre Office Writer. Just stop it right now!  The flaw
+   with these document editors is the user has only one interface with the
+   program for two distinct tasks: content creation and formatting.
+
+   Users often want standard format and focus on the content. LaTeX and
+   markdown are markup language that abstract the formatting process from the
+   user. Then, the computer takes care of the references, the layout of
+   listings, the exact amount of spaces around words.
+
+   *Markdown* is simplified version of LaTeX (but still really capable) and
+   *pandoc* is a program that can freely convert your markdown or LaTeX file
+   into pdf, html or even docx.
+
+   A good argument in favor of these pure text file is that version control
+   come almost for free and UNIX diff functions (to display difference between
+   documents) works seamlessly.
+
+
+** Programming languages for data analysis:  *python* and *R*
+
+   There is no clear winner between the two languages when analyzing data and
+   each of them has its own advantages. Both provide great advantages:
+
+   + REPL (interactive console for coding);
+   + Open source;
+   + A wonderful open source community;
+   + An uncountable set of tutorials for beginning;
+   + Object-oriented and functional programming paradigm;
+   + Easy interaction with most used compiled languages (C, C++, Java).
+   + Exceptional documentation for the base package.
+
+   Advice: if you have little experience in coding, I totally support learning
+   *python* first and then quickly pick up with *R*, because *python* also
+   emphasis data structures (aka speed of your code) and software engineering
+   (maintainability).
+
+   Main differences are emphasized in the next subsections.
+
+*** Python
+    Python is often favored by the machine learning community.
+    + All-battery included programming languages: there is a module for almost
+      everything in the base installation (csv, itertools, regular expression).
+    + Explicit data structure (list, tuple, set, frozenset, hash-map/dictionary).
+    + There is only ONE true way of writing code (so most people tend to have
+      the same style).
+    + It has one of the most beautiful syntax among programming languages.
+    + There is a default support for module (that is writing code in other
+      files) and the device is trivial to use.
+
+*** R
+    R is the standard programming language for most data analysts.
+    + Almost any statistical learning algorithm has already been implemented
+      and is available on CRAN.
+    + Installation of new packages is a lot easier, when the user has no *admin
+      rights*. This is really important as most companies do not provide them
+      to their employees.
+    + Programming language created by statisticians for statisticians.
+    + Syntax is really targeted for performing data analysis.
+    + Fairly high level language. Packages should take care of most system error
+      (segmentation fault or out of bound memory).
+    + Amazing data visualization capabilities.
+    + Interactive data visualization with javascript is definitively more
+      advanced than with python.
+    + /Vectorized/ operations are favored to ~for~ loop.
+
+** Version control: *git* and *github*
+   I have honestly used them since only recently. Hence my opinion and my
+   experience might not be really significant. But version control definitively
+   helps. It avoids having archive folders everywhere, and it tracts the
+   development of our work.
+** Finally, if you want to get a corporate job
+*** SQL for databases
+    I am honestly not a specialist of databases, especially as I prefer simple
+    format such as csv. But as data grow larger, it is clear that database have
+    advantage. I suppose we will only remain user, so it does help to know the
+    basics of SQL. From there, a lot of language are similar but if one has to
+    write queries often, some packages from python or R will help to not
+    become crazy.
+*** Excel, VBA
+    Excel and VBA are the most dangerous tools in the corporate world. Anyone
+    can make extremely advanced data analysis and plots. However, it is almost
+    impossible to reproduce the research and to avoid mistakes. Hence my advice
+    is that, if possible, try everything to avoid using with Excel files:
+    + Use some python module to interact with Excel.
+    + Create vba macros to export/import data in ~.csv~ and call a python
+      script with the ~Shell~ vba function to work with the data.
+
+    If anyhow, you still MUST use Excel, here are some tricks:
+    + Excel
+      + Pivot table allows to create simple "*-by" summary of your data
+        (e.g. "sum-by region", "count-by country").
+      + Filter function and deleting duplicate elements are great built-in
+        tools.
+      + ~vlookup~: the best way to reproduce the behavior of hash-map in Excel.
+    + VBA
+      + Record macro is your best friend.
+      + Turn off display updating when running macros.
+      + If possible, work with arrays in memory and not cells on the
+        spreadsheet.
+      + Use Excel functions whenever possible.
+      + Include Microsoft.Scripting module to get hash-maps (associative
+        arrays).
+      + When filtering data, use the ~filter~ function from Excel with the
+        correct parameters.
+
+* Intermediate topics
+I consider here some intermediate topics
+** Ubuntu
+
+** Emacs
+   My point of view is kind of biased from this blog post.
+   # TODO: add link to IDE Culture.
+   My point is, one should use the same tool at work and at home, as I would
+   like my improve my skill especially when I am working.
+
+   Moreover, using a bare text editor force professional to understand the
+   engineering process behind their analysis and also when the constraints for
+   scaling.
+
+** Document generation
+   A good option in combination with Emacs is to use *Org-mode* for *literate
+   programming*. Org-mode is an equivalent of markdown (and is also supported
+   by pandoc). Nevertheless, it provides a better integration with Emacs and
+   its default HTML and LaTeX output hare nicer. Bonus: it is a really good
+   TODO list remainder.
+
+   Literate programming is also an interesting topic: usually, programmers
+   write code, filled with comments, but this could or should be
+   reverse. Authors should write text with code blocks describing their
+   views. Org-mode totally support this type of document. For a good
+   alternative, search for ~rmarkdown~.
+
+** Python
+
+   The *Scipy* stack includes most of what you will ever need to replace
+   matlab: numpy (approximately matrix calculation), scipy (optimization and
+   numerical mathematics), ipython (a better repl/interactive console), pandas
+   (data.frame like data structure), simpy (symbolic mathematics) and nose (for
+   testing). *pandas* is the most important package to learn for data analysis.
+
+   *Scikit-learn* offers most machine learning algorithm for statistical
+   prediction. *Seaborn* is a great abstraction over matplotlib for plotting
+   *data.
+
+** R
+   There are several types of R packages: packages providing statistical
+   models, others providing infrastructures for performing analysis. I will
+   give you some advice for the second type of packages.
+
+   *simsalapar* abstract and provide a great framework for computing simulation
+   over grids of parameters.
+
+   *data.table* is probably the most interesting packages. It offers a C++
+   implementation of the data.frame data structure and provides incredible
+   speed up. The ~fread~ function also accelerate incredibly the loading of
+   /csv/ data. One of the drawback is the way it uses expression and is maybe
+   not the most natural way for R programmers to use it.
+
+   *ggplot2* and *lattice* make the plotting experience of R even
+   sweeter. lattice gives quick visualization for faceting (e.g. xy-plot for
+   /x/ against /y/ grouped by /z/), whereas ggplot2 wraps the *grid* package to
+   make highly customized data visualization. lattice is often faster than
+   ggplot2, but ggplot2 is maintained and its output can customized.
+
+   *caret* abstracts the best practices of data analysis to allow more
+   flexibility. It offers a framework to compare and average models and perform
+   the split of data (test-training-evaluation set) automatically.
+
+   *parallel* come by default in R. I suggest to learn how to write parallel
+   code with clusters and not with multiple cores. The reason is that forking
+   copies completely your master thread which could cause some problem if you
+   have a finite amount of RAM.
+
+   *timeDate* from the RiskMetrics team is a really appreciable abstraction of
+   calendar issue in the financial world.
+
+   *regular expression* (or *regex*) are supported by default in R, learn about
+   them, they are life savers!
+
+   *magrittr* provides the pipe operator ~%>%~. More or less, it allows to read
+   expression from left to right, compared to inside to outside:
+   #+BEGIN_SRC R
+   x %>% f %>% g(y) == g(f(x), y) # TRUE
+   #+END_SRC
+
+** Statistics: Repeat the basics
+   I love shiny statistical learning methods, I mean, I do love them (neural
+   networks, lasso/ridge regression, random forest, copula modeling). However, I
+   am convinced that for mastery, one do have to repeat the basics often and to
+   have solid understanding of what /randomness/ means in statistics
+
+* Links
+** Data analysis
+   + [[http://www.math.uwaterloo.ca/~mhofert/contents/guidelines.pdf][Guidelines for Statistical Projects: Coding and Typography]]:  Great reading
+     and advice.
+** Git and Github
+   + [[https://www.udacity.com/course/how-to-use-git-and-github--ud775][Gentle introduction]] to git and github.
+   + [[https://git-scm.com/][Official website]]
+** Python
+   + [[https://www.udacity.com/course/intro-to-computer-science--cs101][Best introduction ever]]
+   + [[http://www.scipy.org/][Scipy]]
+   + [[http://scikit-learn.org/][Scikit]]
+   + [[http://stanford.edu/~mwaskom/software/seaborn][Seaborn]]
+** R
+   + [[http://arxiv.org/pdf/1309.4402v1][Simsalapar]] documentation
+   + [[http://ess.r-project.org/index.php?Section=download][Emacs integration with R]]
