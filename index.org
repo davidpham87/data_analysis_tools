@@ -20,6 +20,20 @@
   programs/languages, the reason is probably that I can not assert that I used
   these other languages enough to have a decent opinion of them.
 
+** General advice
+   If I may give only one advice, it would be the following:
+
+   #+BEGIN_QUOTE
+   DO NOT REINVENT THE WHEEL.
+   #+END_QUOTE
+
+   Search hard for a solution of a problem, or try to shape a problem into a
+   solved problem. Even if you are the best scientist and coder, great
+   professionals almost always win time by only copy-pasting and understanding
+   solutions that already exists.  However, during your training, retry to
+   rewrite all the scripts that you learn: one learns about typos and subtle
+   mistakes by doing so.
+
 * Quick overview
   This is a list of tools I genuinely recommend to learn and use in our daily
   life when interacting with a computer.
@@ -48,21 +62,28 @@
 
 * Links
 ** Emacs
+   + Start with ~alt-x help-with-tutorial~, to get the first introduction.
    + [[http://ess.r-project.org/index.php?Section=download][Emacs with R]]
+   + Some nice introduction from [[https://www.youtube.com/channel/UCGM8KgUXqsS4d8-4rgWRWKg][Udacity]].
+
 ** Data analysis
    + [[http://www.math.uwaterloo.ca/~mhofert/contents/guidelines.pdf][Guidelines for Statistical Projects: Coding and Typography]]:  Great reading
      and advice for writing LaTeX documents and R Code.
+
 ** Git and Github
    + [[https://www.udacity.com/course/how-to-use-git-and-github--ud775][Gentle introduction]] to git and github.
-   + [[https://git-scm.com/][Official website]]
+   + [[https://git-scm.com/][Official website]] of git.
+
 ** Python
-   + [[https://www.udacity.com/course/intro-to-computer-science--cs101][Best introduction ever]]
+   + [[https://www.udacity.com/course/intro-to-computer-science--cs101][Best introduction ever]] to python.
    + [[http://www.scipy.org/][Scipy]]
    + [[http://scikit-learn.org/][Scikit]]
    + [[http://stanford.edu/~mwaskom/software/seaborn][Seaborn]]
+
 ** R
    + [[http://arxiv.org/pdf/1309.4402v1][Simsalapar]] documentation
    + [[http://blog.rstudio.org/][RStudio blog]]: a good point for looking at best computer practices.
+
 ** Blog post
    + [[https://michaelochurch.wordpress.com/2012/07/27/six-languages-to-master/][Language to master]], when beginning to learn software engineering.
    + [[https://michaelochurch.wordpress.com/2012/08/15/what-is-spaghetti-code/][Spaghetti code]], what to avoid in bigger projects.
@@ -218,11 +239,13 @@ these programs or framework.
 
 * Intermediate topics
 I consider here some intermediate topics
+
 ** Ubuntu
    I don't have much to add about which OS you should use. You can argue that
    most paid job require some knowledge of C# and the .Net platform.
    Nonetheless, most open source tools have been thoroughly tested on Linux
    machines, hence you will avoid some subtle bugs by adopting Ubuntu.
+
 ** Emacs
 
    I would like use the same tool at work and at home, as I want to be able to
@@ -240,7 +263,12 @@ I consider here some intermediate topics
        the non-integration of webkit (but we will figure out how to make it).
      + True integration with UNIX tools: You will find yourself using grep,
        find, top without knowing.
-     + Most importantly: the feeling of mastery.
+     + A wonderful way to learn to code as well.
+     + Most importantly: the feeling of mastery. Every day, I learn something
+       new about Emacs and I am sure I can use it in my workflow. Otherwise I
+       learn something about elisp (which is never bad). Overall, it made me a
+       better programmer as well as it gave me the feeling about being able to
+       tackle all challenge with a common set of tools.
 
 ** Document generation
    A good option in combination with Emacs is to use *Org-mode* for *literate
@@ -256,7 +284,6 @@ I consider here some intermediate topics
    alternative, search for ~rmarkdown~.
 
 ** Python
-
    The *Scipy* stack includes most of what you will ever need to replace
    matlab: numpy (approximately matrix calculation), scipy (optimization and
    numerical mathematics), ipython (a better repl/interactive console), pandas
@@ -313,21 +340,34 @@ I consider here some intermediate topics
    networks, lasso/ridge regression, random forest, copula modeling). However, I
    am convinced that for mastery, one do have to repeat the basics often and to
    have solid understanding of what /randomness/ means in statistics.
+
 * Things that exists I never used professionally
   As any curious person, I try to surf on the net and see what could be
   interesting to add to my set of skills. Unfortunately, I could never
   professionally use the tools which I am describing below, but I wanted to
   point at them for the sake of completion.
+
+** Linear Algebra
+   Matrix notation is certainly helpful. Nevertheless, for advanced numerical
+   computations and optimization, /vectorization/ (using values locations in
+   memory to perform calculation) is primordial. I unfortunately never had to
+   deal with such constraints, but it would not hurt to have an overview about
+   LAPACK, BLAS and ATLAS.
+
 ** C, C++ and Cuda
    *C* and *C++* are almost the /de facto/ way to improve R or python code and
    *Cuda* gives access to the power of your graphic card for computing.
    I do not have a strong opinion of them, I may be too inexperienced.
+
+   What I do know is that for short function, these language are really
+   manageable and quit elegant as well.
+
 ** Java (JVM), Clojure, Scala and Jython
    No one would argue that Java is used everywhere. However, the language has
    its constraints on its syntax that makes it quite not enjoyable.
 
    I really appreciate *Clojure* for its simplicity and for its tradition for
-   lisp, however, one will more easily find a job with *Scala*.
+   Lisp, however, one will more easily find a job with *Scala*.
 
    As last resort, *Jython*, the JVM implementation of python, can also help.
 
@@ -337,7 +377,9 @@ I consider here some intermediate topics
 
    *D3.js* is one of the best framework and *metricsgraphics.js* wraps around
     it in order to abstract some of the complexities.
+
 ** Python
    *Cython* seems to be a nice start for optimizing your python code.
+
 ** R
    *Rcpp* is a wonderful way to interact R with C++.

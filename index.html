@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Data analysis tools</title>
-<!-- 2015-12-31 Don 14:00 -->
+<!-- 2015-12-31 Don 18:11 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="David Pham" />
@@ -149,7 +149,11 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1. Introduction</a></li>
+<li><a href="#sec-1">1. Introduction</a>
+<ul>
+<li><a href="#sec-1-1">1.1. General advice</a></li>
+</ul>
+</li>
 <li><a href="#sec-2">2. Quick overview</a></li>
 <li><a href="#sec-3">3. Links</a>
 <ul>
@@ -193,11 +197,12 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#sec-6">6. Things that exists I never used professionally</a>
 <ul>
-<li><a href="#sec-6-1">6.1. C, C++ and Cuda</a></li>
-<li><a href="#sec-6-2">6.2. Java (JVM), Clojure, Scala and Jython</a></li>
-<li><a href="#sec-6-3">6.3. Javascript</a></li>
-<li><a href="#sec-6-4">6.4. Python</a></li>
-<li><a href="#sec-6-5">6.5. R</a></li>
+<li><a href="#sec-6-1">6.1. Linear Algebra</a></li>
+<li><a href="#sec-6-2">6.2. C, C++ and Cuda</a></li>
+<li><a href="#sec-6-3">6.3. Java (JVM), Clojure, Scala and Jython</a></li>
+<li><a href="#sec-6-4">6.4. Javascript</a></li>
+<li><a href="#sec-6-5">6.5. Python</a></li>
+<li><a href="#sec-6-6">6.6. R</a></li>
 </ul>
 </li>
 </ul>
@@ -227,6 +232,30 @@ you in your daily work. Obviously, this list does miss few
 programs/languages, the reason is probably that I can not assert that I used
 these other languages enough to have a decent opinion of them.
 </p>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> General advice</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+If I may give only one advice, it would be the following:
+</p>
+
+<blockquote>
+<p>
+DO NOT REINVENT THE WHEEL.
+</p>
+</blockquote>
+
+<p>
+Search hard for a solution of a problem, or try to shape a problem into a
+solved problem. Even if you are the best scientist and coder, great
+professionals almost always win time by only copy-pasting and understanding
+solutions that already exists.  However, during your training, retry to
+rewrite all the scripts that you learn: one learns about typos and subtle
+mistakes by doing so.
+</p>
+</div>
 </div>
 </div>
 
@@ -281,11 +310,16 @@ programs (not class) in a funny and interactive fashion.
 <h3 id="sec-3-1"><span class="section-number-3">3.1</span> Emacs</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
+<li>Start with <code>alt-x help-with-tutorial</code>, to get the first introduction.
+</li>
 <li><a href="http://ess.r-project.org/index.php?Section=download">Emacs with R</a>
+</li>
+<li>Some nice introduction from <a href="https://www.youtube.com/channel/UCGM8KgUXqsS4d8-4rgWRWKg">Udacity</a>.
 </li>
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-3-2" class="outline-3">
 <h3 id="sec-3-2"><span class="section-number-3">3.2</span> Data analysis</h3>
 <div class="outline-text-3" id="text-3-2">
@@ -296,22 +330,24 @@ and advice for writing LaTeX documents and R Code.
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-3-3" class="outline-3">
 <h3 id="sec-3-3"><span class="section-number-3">3.3</span> Git and Github</h3>
 <div class="outline-text-3" id="text-3-3">
 <ul class="org-ul">
 <li><a href="https://www.udacity.com/course/how-to-use-git-and-github--ud775">Gentle introduction</a> to git and github.
 </li>
-<li><a href="https://git-scm.com/">Official website</a>
+<li><a href="https://git-scm.com/">Official website</a> of git.
 </li>
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-3-4" class="outline-3">
 <h3 id="sec-3-4"><span class="section-number-3">3.4</span> Python</h3>
 <div class="outline-text-3" id="text-3-4">
 <ul class="org-ul">
-<li><a href="https://www.udacity.com/course/intro-to-computer-science--cs101">Best introduction ever</a>
+<li><a href="https://www.udacity.com/course/intro-to-computer-science--cs101">Best introduction ever</a> to python.
 </li>
 <li><a href="http://www.scipy.org/">Scipy</a>
 </li>
@@ -322,6 +358,7 @@ and advice for writing LaTeX documents and R Code.
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-3-5" class="outline-3">
 <h3 id="sec-3-5"><span class="section-number-3">3.5</span> R</h3>
 <div class="outline-text-3" id="text-3-5">
@@ -333,6 +370,7 @@ and advice for writing LaTeX documents and R Code.
 </ul>
 </div>
 </div>
+
 <div id="outline-container-sec-3-6" class="outline-3">
 <h3 id="sec-3-6"><span class="section-number-3">3.6</span> Blog post</h3>
 <div class="outline-text-3" id="text-3-6">
@@ -634,6 +672,7 @@ correct parameters.
 I consider here some intermediate topics
 </p>
 </div>
+
 <div id="outline-container-sec-5-1" class="outline-3">
 <h3 id="sec-5-1"><span class="section-number-3">5.1</span> Ubuntu</h3>
 <div class="outline-text-3" id="text-5-1">
@@ -645,6 +684,7 @@ machines, hence you will avoid some subtle bugs by adopting Ubuntu.
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-5-2" class="outline-3">
 <h3 id="sec-5-2"><span class="section-number-3">5.2</span> Emacs</h3>
 <div class="outline-text-3" id="text-5-2">
@@ -672,7 +712,13 @@ the non-integration of webkit (but we will figure out how to make it).
 <li>True integration with UNIX tools: You will find yourself using grep,
 find, top without knowing.
 </li>
-<li>Most importantly: the feeling of mastery.
+<li>A wonderful way to learn to code as well.
+</li>
+<li>Most importantly: the feeling of mastery. Every day, I learn something
+new about Emacs and I am sure I can use it in my workflow. Otherwise I
+learn something about elisp (which is never bad). Overall, it made me a
+better programmer as well as it gave me the feeling about being able to
+tackle all challenge with a common set of tools.
 </li>
 </ul>
 </div>
@@ -795,6 +841,7 @@ have solid understanding of what <i>randomness</i> means in statistics.
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-6" class="outline-2">
 <h2 id="sec-6"><span class="section-number-2">6</span> Things that exists I never used professionally</h2>
 <div class="outline-text-2" id="text-6">
@@ -805,19 +852,39 @@ professionally use the tools which I am describing below, but I wanted to
 point at them for the sake of completion.
 </p>
 </div>
+
 <div id="outline-container-sec-6-1" class="outline-3">
-<h3 id="sec-6-1"><span class="section-number-3">6.1</span> C, C++ and Cuda</h3>
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> Linear Algebra</h3>
 <div class="outline-text-3" id="text-6-1">
+<p>
+Matrix notation is certainly helpful. Nevertheless, for advanced numerical
+computations and optimization, <i>vectorization</i> (using values locations in
+memory to perform calculation) is primordial. I unfortunately never had to
+deal with such constraints, but it would not hurt to have an overview about
+LAPACK, BLAS and ATLAS.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> C, C++ and Cuda</h3>
+<div class="outline-text-3" id="text-6-2">
 <p>
 <b>C</b> and <b>C++</b> are almost the <i>de facto</i> way to improve R or python code and
 <b>Cuda</b> gives access to the power of your graphic card for computing.
 I do not have a strong opinion of them, I may be too inexperienced.
 </p>
+
+<p>
+What I do know is that for short function, these language are really
+manageable and quit elegant as well.
+</p>
 </div>
 </div>
-<div id="outline-container-sec-6-2" class="outline-3">
-<h3 id="sec-6-2"><span class="section-number-3">6.2</span> Java (JVM), Clojure, Scala and Jython</h3>
-<div class="outline-text-3" id="text-6-2">
+
+<div id="outline-container-sec-6-3" class="outline-3">
+<h3 id="sec-6-3"><span class="section-number-3">6.3</span> Java (JVM), Clojure, Scala and Jython</h3>
+<div class="outline-text-3" id="text-6-3">
 <p>
 No one would argue that Java is used everywhere. However, the language has
 its constraints on its syntax that makes it quite not enjoyable.
@@ -825,7 +892,7 @@ its constraints on its syntax that makes it quite not enjoyable.
 
 <p>
 I really appreciate <b>Clojure</b> for its simplicity and for its tradition for
-lisp, however, one will more easily find a job with <b>Scala</b>.
+Lisp, however, one will more easily find a job with <b>Scala</b>.
 </p>
 
 <p>
@@ -834,9 +901,9 @@ As last resort, <b>Jython</b>, the JVM implementation of python, can also help.
 </div>
 </div>
 
-<div id="outline-container-sec-6-3" class="outline-3">
-<h3 id="sec-6-3"><span class="section-number-3">6.3</span> Javascript</h3>
-<div class="outline-text-3" id="text-6-3">
+<div id="outline-container-sec-6-4" class="outline-3">
+<h3 id="sec-6-4"><span class="section-number-3">6.4</span> Javascript</h3>
+<div class="outline-text-3" id="text-6-4">
 <p>
 Interactive data visualization is the future and your browser is probably
 one of the best tool to display data.
@@ -848,17 +915,19 @@ one of the best tool to display data.
 </p>
 </div>
 </div>
-<div id="outline-container-sec-6-4" class="outline-3">
-<h3 id="sec-6-4"><span class="section-number-3">6.4</span> Python</h3>
-<div class="outline-text-3" id="text-6-4">
+
+<div id="outline-container-sec-6-5" class="outline-3">
+<h3 id="sec-6-5"><span class="section-number-3">6.5</span> Python</h3>
+<div class="outline-text-3" id="text-6-5">
 <p>
 <b>Cython</b> seems to be a nice start for optimizing your python code.
 </p>
 </div>
 </div>
-<div id="outline-container-sec-6-5" class="outline-3">
-<h3 id="sec-6-5"><span class="section-number-3">6.5</span> R</h3>
-<div class="outline-text-3" id="text-6-5">
+
+<div id="outline-container-sec-6-6" class="outline-3">
+<h3 id="sec-6-6"><span class="section-number-3">6.6</span> R</h3>
+<div class="outline-text-3" id="text-6-6">
 <p>
 <b>Rcpp</b> is a wonderful way to interact R with C++.
 </p>
@@ -868,7 +937,7 @@ one of the best tool to display data.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: David Pham</p>
-<p class="date">Created: 2015-12-31 Don 14:00</p>
+<p class="date">Created: 2015-12-31 Don 18:11</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
