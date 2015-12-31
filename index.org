@@ -5,21 +5,20 @@
 
 * Introduction
 
-  A friend ask me what I would recommend to learn for people wanting to join
-  the field of quantitative finance, machine learning or statistics (the basic
-  skills are similar). He also asked to make some small remarks on why I would
-  choose these tools.
+  A friend ask me what I would recommend to learn if someone wanted to join the
+  field of quantitative finance, machine learning or statistics (the basic
+  skills are similar). He also asked to make some small remarks on why these
+  tools were relevant.
 
   First of all, this is only a matter of personal taste and they are a lot of
   reason why someone would learn and act differently, but my hope is that I can
-  provide some justification on why I invested time to learn these tools. I
-  personally use all the following tools on recurrent basis and I would advise
-  to really to learn the basics and use the programs that really help you in
-  your daily work. Obviously, this list does miss few programs/languages, the
-  reason is probably that I can not assert that I used these other language
-  enough to have a decent opinion of them.
+  provide some justification on why I invested time to learn these tools.
 
-  Additional links are provided at the end of the document.
+  I personally use all the following tools on recurrent basis and I would
+  advise to really to learn the basics and use the programs that really help
+  you in your daily work. Obviously, this list does miss few
+  programs/languages, the reason is probably that I can not assert that I used
+  these other languages enough to have a decent opinion of them.
 
 * Quick overview
   This is a list of tools I genuinely recommend to learn and use in our daily
@@ -46,6 +45,28 @@
     [[https://www.python.org/][Python homepage]]
   + *R*: your friend for visualizing and analyzing data.
     [[https://cran.r-project.org/][R CRAN homepage]] and [[https://www.rstudio.com/][RStudio IDE]] (always handy when starting with R).
+
+* Links
+** Emacs
+   + [[http://ess.r-project.org/index.php?Section=download][Emacs with R]]
+** Data analysis
+   + [[http://www.math.uwaterloo.ca/~mhofert/contents/guidelines.pdf][Guidelines for Statistical Projects: Coding and Typography]]:  Great reading
+     and advice for writing LaTeX documents and R Code.
+** Git and Github
+   + [[https://www.udacity.com/course/how-to-use-git-and-github--ud775][Gentle introduction]] to git and github.
+   + [[https://git-scm.com/][Official website]]
+** Python
+   + [[https://www.udacity.com/course/intro-to-computer-science--cs101][Best introduction ever]]
+   + [[http://www.scipy.org/][Scipy]]
+   + [[http://scikit-learn.org/][Scikit]]
+   + [[http://stanford.edu/~mwaskom/software/seaborn][Seaborn]]
+** R
+   + [[http://arxiv.org/pdf/1309.4402v1][Simsalapar]] documentation
+   + [[http://blog.rstudio.org/][RStudio blog]]: a good point for looking at best computer practices.
+** Blog post
+   + [[https://michaelochurch.wordpress.com/2012/07/27/six-languages-to-master/][Language to master]], when beginning to learn software engineering.
+   + [[https://michaelochurch.wordpress.com/2012/08/15/what-is-spaghetti-code/][Spaghetti code]], what to avoid in bigger projects.
+   + [[https://michaelochurch.wordpress.com/2013/01/09/ide-culture-vs-unix-philosophy/][IDE vs Unix philosophy]], or why Emacs is awesome. Make small things, that do one thing well.
 
 * Details
 The goal of this section is to provide a basic justification on why I am using
@@ -123,7 +144,7 @@ these programs or framework.
    Advice: if you have little experience in coding, I totally support learning
    *python* first and then quickly pick up with *R*, because *python* also
    emphasis data structures (aka speed of your code) and software engineering
-   (maintainability).
+   (maintainability and reliability).
 
    Main differences are emphasized in the next subsections.
 
@@ -135,8 +156,9 @@ these programs or framework.
     + There is only ONE true way of writing code (so most people tend to have
       the same style).
     + It has one of the most beautiful syntax among programming languages.
-    + There is a default support for module (that is writing code in other
-      files) and the device is trivial to use.
+    + There is a default support for modules (i.e. writing independent code in
+      other files and reusing them) and it is trivial to use (~import
+      my_other_file~, wher ~my_other_file.py~ contains what you want to reuse).
 
 *** R
     R is the standard programming language for most data analysts.
@@ -197,16 +219,28 @@ these programs or framework.
 * Intermediate topics
 I consider here some intermediate topics
 ** Ubuntu
-
+   I don't have much to add about which OS you should use. You can argue that
+   most paid job require some knowledge of C# and the .Net platform.
+   Nonetheless, most open source tools have been thoroughly tested on Linux
+   machines, hence you will avoid some subtle bugs by adopting Ubuntu.
 ** Emacs
-   My point of view is kind of biased from this blog post.
-   # TODO: add link to IDE Culture.
-   My point is, one should use the same tool at work and at home, as I would
-   like my improve my skill especially when I am working.
 
-   Moreover, using a bare text editor force professional to understand the
-   engineering process behind their analysis and also when the constraints for
-   scaling.
+   I would like use the same tool at work and at home, as I want to be able to
+   improve my skills continuously, especially when I am working (and we do use
+   Emacs at my working place now).  The alternative solution is to use the
+   IDEs.  Nevertheless, most of them are quite complicated (which is also true
+   for Emacs) and the possibilities of customizing them are quite limited.
+
+   Moreover, using a bare text editor force professionals to understand the
+   engineering process behind their products when compiling.
+
+   One of the best argument, I have heard about using Emacs are the following:
+     + Emacs has been here for the past 30 years, and will probably still be
+       there in the next 30 years. One of the reason why it could disappear is
+       the non-integration of webkit (but we will figure out how to make it).
+     + True integration with UNIX tools: You will find yourself using grep,
+       find, top without knowing.
+     + Most importantly: the feeling of mastery.
 
 ** Document generation
    A good option in combination with Emacs is to use *Org-mode* for *literate
@@ -278,20 +312,32 @@ I consider here some intermediate topics
    I love shiny statistical learning methods, I mean, I do love them (neural
    networks, lasso/ridge regression, random forest, copula modeling). However, I
    am convinced that for mastery, one do have to repeat the basics often and to
-   have solid understanding of what /randomness/ means in statistics
+   have solid understanding of what /randomness/ means in statistics.
+* Things that exists I never used professionally
+  As any curious person, I try to surf on the net and see what could be
+  interesting to add to my set of skills. Unfortunately, I could never
+  professionally use the tools which I am describing below, but I wanted to
+  point at them for the sake of completion.
+** C, C++ and Cuda
+   *C* and *C++* are almost the /de facto/ way to improve R or python code and
+   *Cuda* gives access to the power of your graphic card for computing.
+   I do not have a strong opinion of them, I may be too inexperienced.
+** Java (JVM), Clojure, Scala and Jython
+   No one would argue that Java is used everywhere. However, the language has
+   its constraints on its syntax that makes it quite not enjoyable.
 
-* Links
-** Data analysis
-   + [[http://www.math.uwaterloo.ca/~mhofert/contents/guidelines.pdf][Guidelines for Statistical Projects: Coding and Typography]]:  Great reading
-     and advice.
-** Git and Github
-   + [[https://www.udacity.com/course/how-to-use-git-and-github--ud775][Gentle introduction]] to git and github.
-   + [[https://git-scm.com/][Official website]]
+   I really appreciate *Clojure* for its simplicity and for its tradition for
+   lisp, however, one will more easily find a job with *Scala*.
+
+   As last resort, *Jython*, the JVM implementation of python, can also help.
+
+** Javascript
+   Interactive data visualization is the future and your browser is probably
+   one of the best tool to display data.
+
+   *D3.js* is one of the best framework and *metricsgraphics.js* wraps around
+    it in order to abstract some of the complexities.
 ** Python
-   + [[https://www.udacity.com/course/intro-to-computer-science--cs101][Best introduction ever]]
-   + [[http://www.scipy.org/][Scipy]]
-   + [[http://scikit-learn.org/][Scikit]]
-   + [[http://stanford.edu/~mwaskom/software/seaborn][Seaborn]]
+   *Cython* seems to be a nice start for optimizing your python code.
 ** R
-   + [[http://arxiv.org/pdf/1309.4402v1][Simsalapar]] documentation
-   + [[http://ess.r-project.org/index.php?Section=download][Emacs integration with R]]
+   *Rcpp* is a wonderful way to interact R with C++.
