@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Data analysis tools</title>
-<!-- 2015-12-31 Don 18:11 -->
+<!-- 2015-12-31 Don 18:28 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="David Pham" />
@@ -195,12 +195,12 @@ for the JavaScript code in this tag.
 <li><a href="#sec-5-6">5.6. Statistics: Repeat the basics</a></li>
 </ul>
 </li>
-<li><a href="#sec-6">6. Things that exists I never used professionally</a>
+<li><a href="#sec-6">6. Things that exists which I never used professionally</a>
 <ul>
 <li><a href="#sec-6-1">6.1. Linear Algebra</a></li>
 <li><a href="#sec-6-2">6.2. C, C++ and Cuda</a></li>
 <li><a href="#sec-6-3">6.3. Java (JVM), Clojure, Scala and Jython</a></li>
-<li><a href="#sec-6-4">6.4. Javascript</a></li>
+<li><a href="#sec-6-4">6.4. Javascript and Clojurescript</a></li>
 <li><a href="#sec-6-5">6.5. Python</a></li>
 <li><a href="#sec-6-6">6.6. R</a></li>
 </ul>
@@ -337,7 +337,9 @@ and advice for writing LaTeX documents and R Code.
 <ul class="org-ul">
 <li><a href="https://www.udacity.com/course/how-to-use-git-and-github--ud775">Gentle introduction</a> to git and github.
 </li>
-<li><a href="https://git-scm.com/">Official website</a> of git.
+<li><a href="https://udacity.github.io/git-styleguide/">Udacity guideline</a> for editing git commits.
+</li>
+<li><a href="https://git-scm.com/">Git official website</a>
 </li>
 </ul>
 </div>
@@ -380,6 +382,8 @@ and advice for writing LaTeX documents and R Code.
 <li><a href="https://michaelochurch.wordpress.com/2012/08/15/what-is-spaghetti-code/">Spaghetti code</a>, what to avoid in bigger projects.
 </li>
 <li><a href="https://michaelochurch.wordpress.com/2013/01/09/ide-culture-vs-unix-philosophy/">IDE vs Unix philosophy</a>, or why Emacs is awesome. Make small things, that do one thing well.
+</li>
+<li><a href="http://www.joelonsoftware.com/articles/Unicode.html">Unicode</a>: If you don't want to smash your head against the wall because of accent.
 </li>
 </ul>
 </div>
@@ -518,7 +522,9 @@ emphasis data structures (aka speed of your code) and software engineering
 </p>
 
 <p>
-Main differences are emphasized in the next subsections.
+Main differences are emphasized in the next subsections. Note, should you
+choose to use <b>python</b>, please try to learn <b>python 3</b> instead of 2.7 as it
+will be depreciated in 2020, and no 2.8 is planed.
 </p>
 </div>
 
@@ -843,7 +849,7 @@ have solid understanding of what <i>randomness</i> means in statistics.
 </div>
 
 <div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6"><span class="section-number-2">6</span> Things that exists I never used professionally</h2>
+<h2 id="sec-6"><span class="section-number-2">6</span> Things that exists which I never used professionally</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 As any curious person, I try to surf on the net and see what could be
@@ -902,16 +908,20 @@ As last resort, <b>Jython</b>, the JVM implementation of python, can also help.
 </div>
 
 <div id="outline-container-sec-6-4" class="outline-3">
-<h3 id="sec-6-4"><span class="section-number-3">6.4</span> Javascript</h3>
+<h3 id="sec-6-4"><span class="section-number-3">6.4</span> Javascript and Clojurescript</h3>
 <div class="outline-text-3" id="text-6-4">
 <p>
 Interactive data visualization is the future and your browser is probably
-one of the best tool to display data.
+one of the best tool to display data. <b>D3.js</b> is one of the best framework
+and <b>metricsgraphics.js</b> wraps around it in order to abstract some of the
+complexities.
 </p>
 
 <p>
-<b>D3.js</b> is one of the best framework and <b>metricsgraphics.js</b> wraps around
- it in order to abstract some of the complexities.
+Clojure is a wonderful lisp dialect, and Clojurescript uses the same
+semantics, but targets the Javascript instead of the JVM. Even though I am
+still in the process of experimenting Clojurescript, I am certain that it
+will enhance the maintainability and performance of my code.
 </p>
 </div>
 </div>
@@ -920,7 +930,8 @@ one of the best tool to display data.
 <h3 id="sec-6-5"><span class="section-number-3">6.5</span> Python</h3>
 <div class="outline-text-3" id="text-6-5">
 <p>
-<b>Cython</b> seems to be a nice start for optimizing your python code.
+<b>Cython</b> seems to be a nice start for optimizing your python code. If you
+really want to go into new fields, <b>Tensorflow</b> from Google is a good start.
 </p>
 </div>
 </div>
@@ -937,7 +948,7 @@ one of the best tool to display data.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: David Pham</p>
-<p class="date">Created: 2015-12-31 Don 18:11</p>
+<p class="date">Created: 2015-12-31 Don 18:28</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

@@ -72,7 +72,8 @@
 
 ** Git and Github
    + [[https://www.udacity.com/course/how-to-use-git-and-github--ud775][Gentle introduction]] to git and github.
-   + [[https://git-scm.com/][Official website]] of git.
+   + [[https://udacity.github.io/git-styleguide/][Udacity guideline]] for editing git commits.
+   + [[https://git-scm.com/][Git official website]]
 
 ** Python
    + [[https://www.udacity.com/course/intro-to-computer-science--cs101][Best introduction ever]] to python.
@@ -88,6 +89,7 @@
    + [[https://michaelochurch.wordpress.com/2012/07/27/six-languages-to-master/][Language to master]], when beginning to learn software engineering.
    + [[https://michaelochurch.wordpress.com/2012/08/15/what-is-spaghetti-code/][Spaghetti code]], what to avoid in bigger projects.
    + [[https://michaelochurch.wordpress.com/2013/01/09/ide-culture-vs-unix-philosophy/][IDE vs Unix philosophy]], or why Emacs is awesome. Make small things, that do one thing well.
+   + [[http://www.joelonsoftware.com/articles/Unicode.html][Unicode]]: If you don't want to smash your head against the wall because of accent.
 
 * Details
 The goal of this section is to provide a basic justification on why I am using
@@ -167,7 +169,9 @@ these programs or framework.
    emphasis data structures (aka speed of your code) and software engineering
    (maintainability and reliability).
 
-   Main differences are emphasized in the next subsections.
+   Main differences are emphasized in the next subsections. Note, should you
+   choose to use *python*, please try to learn *python 3* instead of 2.7 as it
+   will be depreciated in 2020, and no 2.8 is planed.
 
 *** Python
     Python is often favored by the machine learning community.
@@ -341,7 +345,7 @@ I consider here some intermediate topics
    am convinced that for mastery, one do have to repeat the basics often and to
    have solid understanding of what /randomness/ means in statistics.
 
-* Things that exists I never used professionally
+* Things that exists which I never used professionally
   As any curious person, I try to surf on the net and see what could be
   interesting to add to my set of skills. Unfortunately, I could never
   professionally use the tools which I am describing below, but I wanted to
@@ -371,15 +375,20 @@ I consider here some intermediate topics
 
    As last resort, *Jython*, the JVM implementation of python, can also help.
 
-** Javascript
+** Javascript and Clojurescript
    Interactive data visualization is the future and your browser is probably
-   one of the best tool to display data.
+   one of the best tool to display data. *D3.js* is one of the best framework
+   and *metricsgraphics.js* wraps around it in order to abstract some of the
+   complexities.
 
-   *D3.js* is one of the best framework and *metricsgraphics.js* wraps around
-    it in order to abstract some of the complexities.
+   Clojure is a wonderful lisp dialect, and Clojurescript uses the same
+   semantics, but targets the Javascript instead of the JVM. Even though I am
+   still in the process of experimenting Clojurescript, I am certain that it
+   will enhance the maintainability and performance of my code.
 
 ** Python
-   *Cython* seems to be a nice start for optimizing your python code.
+   *Cython* seems to be a nice start for optimizing your python code. If you
+   really want to go into new fields, *Tensorflow* from Google is a good start.
 
 ** R
    *Rcpp* is a wonderful way to interact R with C++.
