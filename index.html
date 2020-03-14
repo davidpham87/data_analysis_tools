@@ -1,956 +1,367 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-<head>
-<title>Data analysis tools</title>
-<!-- 2015-12-31 Don 18:28 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="David Pham" />
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
-  .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
-  .tag    { background-color: #eee; font-family: monospace;
-            padding: 2px; font-size: 80%; font-weight: normal; }
-  .timestamp { color: #bebebe; }
-  .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
-  .underline { text-decoration: underline; }
-  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
-  p.verse { margin-left: 3%; }
-  pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
-    padding: 8pt;
-    font-family: monospace;
-    overflow: auto;
-    margin: 1.2em;
-  }
-  pre.src {
-    position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
-  }
-  pre.src:before {
-    display: none;
-    position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
-    padding: 3px;
-    border: 1px solid black;
-  }
-  pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
-  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
-
-  table { border-collapse:collapse; }
-  caption.t-above { caption-side: top; }
-  caption.t-bottom { caption-side: bottom; }
-  td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
-  dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
-  .footdef  { margin-bottom: 1em; }
-  .figure { padding: 1em; }
-  .figure p { text-align: center; }
-  .inlinetask {
-    padding: 10px;
-    border: 2px solid gray;
-    margin: 10px;
-    background: #ffffcc;
-  }
-  #org-div-home-and-up
-   { text-align: right; font-size: 70%; white-space: nowrap; }
-  textarea { overflow-x: auto; }
-  .linenr { font-size: smaller }
-  .code-highlighted { background-color: #ffff00; }
-  .org-info-js_info-navigation { border-style: none; }
-  #org-info-js_console-label
-    { font-size: 10px; font-weight: bold; white-space: nowrap; }
-  .org-info-js_search-highlight
-    { background-color: #ffff00; color: #000000; font-weight: bold; }
-  /*]]>*/-->
-</style>
-<link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/readtheorg.css"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="http://www.pirilampo.org/styles/lib/js/jquery.stickytableheaders.js"></script>
-<script type="text/javascript" src="http://www.pirilampo.org/styles/readtheorg/js/readtheorg.js"></script>
-<style> pre.src {background: #3F3F3F; color: #DCDCCC;} </style>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
-</head>
-<body>
-<div id="content">
-<h1 class="title">Data analysis tools</h1>
-<div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#sec-1">1. Introduction</a>
-<ul>
-<li><a href="#sec-1-1">1.1. General advice</a></li>
-</ul>
-</li>
-<li><a href="#sec-2">2. Quick overview</a></li>
-<li><a href="#sec-3">3. Links</a>
-<ul>
-<li><a href="#sec-3-1">3.1. Emacs</a></li>
-<li><a href="#sec-3-2">3.2. Data analysis</a></li>
-<li><a href="#sec-3-3">3.3. Git and Github</a></li>
-<li><a href="#sec-3-4">3.4. Python</a></li>
-<li><a href="#sec-3-5">3.5. R</a></li>
-<li><a href="#sec-3-6">3.6. Blog post</a></li>
-</ul>
-</li>
-<li><a href="#sec-4">4. Details</a>
-<ul>
-<li><a href="#sec-4-1">4.1. <b>Ubuntu</b></a></li>
-<li><a href="#sec-4-2">4.2. Text editor/IDE: <b>Emacs</b></a></li>
-<li><a href="#sec-4-3">4.3. Document generation: <b>Pandoc</b> (markdown, LaTeX)</a></li>
-<li><a href="#sec-4-4">4.4. Programming languages for data analysis:  <b>python</b> and <b>R</b></a>
-<ul>
-<li><a href="#sec-4-4-1">4.4.1. Python</a></li>
-<li><a href="#sec-4-4-2">4.4.2. R</a></li>
-</ul>
-</li>
-<li><a href="#sec-4-5">4.5. Version control: <b>git</b> and <b>github</b></a></li>
-<li><a href="#sec-4-6">4.6. Finally, if you want to get a corporate job</a>
-<ul>
-<li><a href="#sec-4-6-1">4.6.1. SQL for databases</a></li>
-<li><a href="#sec-4-6-2">4.6.2. Excel, VBA</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#sec-5">5. Intermediate topics</a>
-<ul>
-<li><a href="#sec-5-1">5.1. Ubuntu</a></li>
-<li><a href="#sec-5-2">5.2. Emacs</a></li>
-<li><a href="#sec-5-3">5.3. Document generation</a></li>
-<li><a href="#sec-5-4">5.4. Python</a></li>
-<li><a href="#sec-5-5">5.5. R</a></li>
-<li><a href="#sec-5-6">5.6. Statistics: Repeat the basics</a></li>
-</ul>
-</li>
-<li><a href="#sec-6">6. Things that exists which I never used professionally</a>
-<ul>
-<li><a href="#sec-6-1">6.1. Linear Algebra</a></li>
-<li><a href="#sec-6-2">6.2. C, C++ and Cuda</a></li>
-<li><a href="#sec-6-3">6.3. Java (JVM), Clojure, Scala and Jython</a></li>
-<li><a href="#sec-6-4">6.4. Javascript and Clojurescript</a></li>
-<li><a href="#sec-6-5">6.5. Python</a></li>
-<li><a href="#sec-6-6">6.6. R</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> Introduction</h2>
-<div class="outline-text-2" id="text-1">
-<p>
-A friend ask me what I would recommend to learn if someone wanted to join the
-field of quantitative finance, machine learning or statistics (the basic
-skills are similar). He also asked to make some small remarks on why these
-tools were relevant.
-</p>
-
-<p>
-First of all, this is only a matter of personal taste and they are a lot of
-reason why someone would learn and act differently, but my hope is that I can
-provide some justification on why I invested time to learn these tools.
-</p>
-
-<p>
-I personally use all the following tools on recurrent basis and I would
-advise to really to learn the basics and use the programs that really help
-you in your daily work. Obviously, this list does miss few
-programs/languages, the reason is probably that I can not assert that I used
-these other languages enough to have a decent opinion of them.
-</p>
-</div>
-
-<div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1"><span class="section-number-3">1.1</span> General advice</h3>
-<div class="outline-text-3" id="text-1-1">
-<p>
-If I may give only one advice, it would be the following:
-</p>
-
-<blockquote>
-<p>
-DO NOT REINVENT THE WHEEL.
-</p>
-</blockquote>
-
-<p>
-Search hard for a solution of a problem, or try to shape a problem into a
-solved problem. Even if you are the best scientist and coder, great
-professionals almost always win time by only copy-pasting and understanding
-solutions that already exists.  However, during your training, retry to
-rewrite all the scripts that you learn: one learns about typos and subtle
-mistakes by doing so.
-</p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> Quick overview</h2>
-<div class="outline-text-2" id="text-2">
-<p>
-This is a list of tools I genuinely recommend to learn and use in our daily
-life when interacting with a computer.
-</p>
-
-<p>
-A good point to remember about the suggestions is they originate from my
-(little) experience and my concern about tractability of the analysis,
-reproducible research, and productivity.
-</p>
-
-<p>
-Let's get started!  Here is a short version:
-</p>
-<ul class="org-ul">
-<li><b>Ubuntu</b>. Just do yourself a favor and work in an UNIX environment.
-<a href="https://ubuntugnome.org/">Ubuntu Gnome homepage</a>
-</li>
-<li><b>Emacs</b> as your environment: write and code in any language without ever
-without leaving your f/j keys in the same consistent environment.
-<a href="https://www.gnu.org/software/emacs/">Emacs homepage</a> (or <a href="http://vgoulet.act.ulaval.ca/en/emacs/">here</a> for a more friendly-user version).
-</li>
-<li><b>Git</b> and <b>Github</b>: modern way for archiving, collaborating and working
-with files.
-<a href="https://git-scm.com/">Git homepage</a>
-</li>
-<li><b>Pandoc, markdown</b>: write content and not the formatting. Markdown and pandoc
-automate most of the editing tasks.
-<a href="http://pandoc.org/">Pandoc homepage</a>
-</li>
-<li><b>Python</b>: your first and most fun programming language. Learn to create
-programs (not class) in a funny and interactive fashion.
-<a href="https://www.python.org/">Python homepage</a>
-</li>
-<li><b>R</b>: your friend for visualizing and analyzing data.
-<a href="https://cran.r-project.org/">R CRAN homepage</a> and <a href="https://www.rstudio.com/">RStudio IDE</a> (always handy when starting with R).
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> Links</h2>
-<div class="outline-text-2" id="text-3">
-</div><div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Emacs</h3>
-<div class="outline-text-3" id="text-3-1">
-<ul class="org-ul">
-<li>Start with <code>alt-x help-with-tutorial</code>, to get the first introduction.
-</li>
-<li><a href="http://ess.r-project.org/index.php?Section=download">Emacs with R</a>
-</li>
-<li>Some nice introduction from <a href="https://www.youtube.com/channel/UCGM8KgUXqsS4d8-4rgWRWKg">Udacity</a>.
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Data analysis</h3>
-<div class="outline-text-3" id="text-3-2">
-<ul class="org-ul">
-<li><a href="http://www.math.uwaterloo.ca/~mhofert/contents/guidelines.pdf">Guidelines for Statistical Projects: Coding and Typography</a>:  Great reading
-and advice for writing LaTeX documents and R Code.
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-3-3" class="outline-3">
-<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Git and Github</h3>
-<div class="outline-text-3" id="text-3-3">
-<ul class="org-ul">
-<li><a href="https://www.udacity.com/course/how-to-use-git-and-github--ud775">Gentle introduction</a> to git and github.
-</li>
-<li><a href="https://udacity.github.io/git-styleguide/">Udacity guideline</a> for editing git commits.
-</li>
-<li><a href="https://git-scm.com/">Git official website</a>
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-3-4" class="outline-3">
-<h3 id="sec-3-4"><span class="section-number-3">3.4</span> Python</h3>
-<div class="outline-text-3" id="text-3-4">
-<ul class="org-ul">
-<li><a href="https://www.udacity.com/course/intro-to-computer-science--cs101">Best introduction ever</a> to python.
-</li>
-<li><a href="http://www.scipy.org/">Scipy</a>
-</li>
-<li><a href="http://scikit-learn.org/">Scikit</a>
-</li>
-<li><a href="http://stanford.edu/~mwaskom/software/seaborn">Seaborn</a>
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-3-5" class="outline-3">
-<h3 id="sec-3-5"><span class="section-number-3">3.5</span> R</h3>
-<div class="outline-text-3" id="text-3-5">
-<ul class="org-ul">
-<li><a href="http://arxiv.org/pdf/1309.4402v1">Simsalapar</a> documentation
-</li>
-<li><a href="http://blog.rstudio.org/">RStudio blog</a>: a good point for looking at best computer practices.
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-3-6" class="outline-3">
-<h3 id="sec-3-6"><span class="section-number-3">3.6</span> Blog post</h3>
-<div class="outline-text-3" id="text-3-6">
-<ul class="org-ul">
-<li><a href="https://michaelochurch.wordpress.com/2012/07/27/six-languages-to-master/">Language to master</a>, when beginning to learn software engineering.
-</li>
-<li><a href="https://michaelochurch.wordpress.com/2012/08/15/what-is-spaghetti-code/">Spaghetti code</a>, what to avoid in bigger projects.
-</li>
-<li><a href="https://michaelochurch.wordpress.com/2013/01/09/ide-culture-vs-unix-philosophy/">IDE vs Unix philosophy</a>, or why Emacs is awesome. Make small things, that do one thing well.
-</li>
-<li><a href="http://www.joelonsoftware.com/articles/Unicode.html">Unicode</a>: If you don't want to smash your head against the wall because of accent.
-</li>
-</ul>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> Details</h2>
-<div class="outline-text-2" id="text-4">
-<p>
-The goal of this section is to provide a basic justification on why I am using
-these programs or framework.
-</p>
-</div>
-
-<div id="outline-container-sec-4-1" class="outline-3">
-<h3 id="sec-4-1"><span class="section-number-3">4.1</span> <b>Ubuntu</b></h3>
-<div class="outline-text-3" id="text-4-1">
-<p>
-Any Linux distribution would be fine.  However, I would recommend Ubuntu as
-the first point of entry to the linux world. The advantage over Windows are
-following.
-</p>
-<ul class="org-ul">
-<li>Open source software: Most advanced tools for data analysis rely on some
-tools of the UNIX world and their installation is extremely simplified.
-</li>
-<li>Ubiquitous terminal: interacting with several languages, tools is the
-favored way of creating analysis (small modular pieces).  Using the shell
-allow us to easily automate the boring tasks with shell scripts.
-</li>
-<li>Remote computations: Most cloud computing services are based on a UNIX
-distribution.
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-4-2" class="outline-3">
-<h3 id="sec-4-2"><span class="section-number-3">4.2</span> Text editor/IDE: <b>Emacs</b></h3>
-<div class="outline-text-3" id="text-4-2">
-<p>
-This topic is probably one of the most controversial.  Most of my work goes
-around reading and writing. I am unfortunately paid to write and authors
-things: code for analysis, automating tasks, formatting or cleaning data,
-and last but not the least, writing documentations and reports.  One of the
-source of inefficiency when writing documents is the time we move our hands
-from the keyboard to the mouse in order to move the cursor around a document
-or characters.  Emacs provide a rich amount of shortcuts to help the user to
-write everything without leaving the keyboard and it also allows to
-completely modify them as well.
-</p>
-<ul class="org-ul">
-<li>Truly personal editor: One of the most interesting feature is also
-that one can really suits Emacs to its need. For example, I have a Swiss
-keyboard, and deleting backwards is a task I often have to do. However,
-with my keyboard layout, I have to move little finger to backspace, which
-disturb my right hand position. Hence, to solve this problem, I simply
-bound <i>CTRL-é</i> and <i>ALT-é</i> to <code>delete-char-backwards</code> and
-<code>delete-word-backward</code>.
-</li>
-<li>One editor for all languages: With Emacs, you will develop code (python,
-R, C++ and clojure are supported), edit text (LaTeX and Markdown) and use
-the shell, all with a consistent set of shortcuts that you set.
-</li>
-</ul>
-
-<p>
-Note that I do not claim, it will be easy at the beginning. However, after a
-few days, Emacs will save you thirty minutes to a hour each day!
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-4-3" class="outline-3">
-<h3 id="sec-4-3"><span class="section-number-3">4.3</span> Document generation: <b>Pandoc</b> (markdown, LaTeX)</h3>
-<div class="outline-text-3" id="text-4-3">
-<p>
-Stop using Word or Libre Office Writer. Just stop it right now!  The flaw
-with these document editors is the user has only one interface with the
-program for two distinct tasks: content creation and formatting.
-</p>
-
-<p>
-Users often want standard format and focus on the content. LaTeX and
-markdown are markup language that abstract the formatting process from the
-user. Then, the computer takes care of the references, the layout of
-listings, the exact amount of spaces around words.
-</p>
-
-<p>
-<b>Markdown</b> is simplified version of LaTeX (but still really capable) and
-<b>pandoc</b> is a program that can freely convert your markdown or LaTeX file
-into pdf, html or even docx.
-</p>
-
-<p>
-A good argument in favor of these pure text file is that version control
-come almost for free and UNIX diff functions (to display difference between
-documents) works seamlessly.
-</p>
-</div>
-</div>
-
-
-<div id="outline-container-sec-4-4" class="outline-3">
-<h3 id="sec-4-4"><span class="section-number-3">4.4</span> Programming languages for data analysis:  <b>python</b> and <b>R</b></h3>
-<div class="outline-text-3" id="text-4-4">
-<p>
-There is no clear winner between the two languages when analyzing data and
-each of them has its own advantages. Both provide great advantages:
-</p>
-
-<ul class="org-ul">
-<li>REPL (interactive console for coding);
-</li>
-<li>Open source;
-</li>
-<li>A wonderful open source community;
-</li>
-<li>An uncountable set of tutorials for beginning;
-</li>
-<li>Object-oriented and functional programming paradigm;
-</li>
-<li>Easy interaction with most used compiled languages (C, C++, Java).
-</li>
-<li>Exceptional documentation for the base package.
-</li>
-</ul>
-
-<p>
-Advice: if you have little experience in coding, I totally support learning
-<b>python</b> first and then quickly pick up with <b>R</b>, because <b>python</b> also
-emphasis data structures (aka speed of your code) and software engineering
-(maintainability and reliability).
-</p>
-
-<p>
-Main differences are emphasized in the next subsections. Note, should you
-choose to use <b>python</b>, please try to learn <b>python 3</b> instead of 2.7 as it
-will be depreciated in 2020, and no 2.8 is planed.
-</p>
-</div>
-
-<div id="outline-container-sec-4-4-1" class="outline-4">
-<h4 id="sec-4-4-1"><span class="section-number-4">4.4.1</span> Python</h4>
-<div class="outline-text-4" id="text-4-4-1">
-<p>
-Python is often favored by the machine learning community.
-</p>
-<ul class="org-ul">
-<li>All-battery included programming languages: there is a module for almost
-everything in the base installation (csv, itertools, regular expression).
-</li>
-<li>Explicit data structure (list, tuple, set, frozenset, hash-map/dictionary).
-</li>
-<li>There is only ONE true way of writing code (so most people tend to have
-the same style).
-</li>
-<li>It has one of the most beautiful syntax among programming languages.
-</li>
-<li>There is a default support for modules (i.e. writing independent code in
-other files and reusing them) and it is trivial to use (<code>import
-      my_other_file</code>, wher <code>my_other_file.py</code> contains what you want to reuse).
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-4-4-2" class="outline-4">
-<h4 id="sec-4-4-2"><span class="section-number-4">4.4.2</span> R</h4>
-<div class="outline-text-4" id="text-4-4-2">
-<p>
-R is the standard programming language for most data analysts.
-</p>
-<ul class="org-ul">
-<li>Almost any statistical learning algorithm has already been implemented
-and is available on CRAN.
-</li>
-<li>Installation of new packages is a lot easier, when the user has no <b>admin
-rights</b>. This is really important as most companies do not provide them
-to their employees.
-</li>
-<li>Programming language created by statisticians for statisticians.
-</li>
-<li>Syntax is really targeted for performing data analysis.
-</li>
-<li>Fairly high level language. Packages should take care of most system error
-(segmentation fault or out of bound memory).
-</li>
-<li>Amazing data visualization capabilities.
-</li>
-<li>Interactive data visualization with javascript is definitively more
-advanced than with python.
-</li>
-<li><i>Vectorized</i> operations are favored to <code>for</code> loop.
-</li>
-</ul>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-4-5" class="outline-3">
-<h3 id="sec-4-5"><span class="section-number-3">4.5</span> Version control: <b>git</b> and <b>github</b></h3>
-<div class="outline-text-3" id="text-4-5">
-<p>
-I have honestly used them since only recently. Hence my opinion and my
-experience might not be really significant. But version control definitively
-helps. It avoids having archive folders everywhere, and it tracts the
-development of our work.
-</p>
-</div>
-</div>
-<div id="outline-container-sec-4-6" class="outline-3">
-<h3 id="sec-4-6"><span class="section-number-3">4.6</span> Finally, if you want to get a corporate job</h3>
-<div class="outline-text-3" id="text-4-6">
-</div><div id="outline-container-sec-4-6-1" class="outline-4">
-<h4 id="sec-4-6-1"><span class="section-number-4">4.6.1</span> SQL for databases</h4>
-<div class="outline-text-4" id="text-4-6-1">
-<p>
-I am honestly not a specialist of databases, especially as I prefer simple
-format such as csv. But as data grow larger, it is clear that database have
-advantage. I suppose we will only remain user, so it does help to know the
-basics of SQL. From there, a lot of language are similar but if one has to
-write queries often, some packages from python or R will help to not
-become crazy.
-</p>
-</div>
-</div>
-<div id="outline-container-sec-4-6-2" class="outline-4">
-<h4 id="sec-4-6-2"><span class="section-number-4">4.6.2</span> Excel, VBA</h4>
-<div class="outline-text-4" id="text-4-6-2">
-<p>
-Excel and VBA are the most dangerous tools in the corporate world. Anyone
-can make extremely advanced data analysis and plots. However, it is almost
-impossible to reproduce the research and to avoid mistakes. Hence my advice
-is that, if possible, try everything to avoid using with Excel files:
-</p>
-<ul class="org-ul">
-<li>Use some python module to interact with Excel.
-</li>
-<li>Create vba macros to export/import data in <code>.csv</code> and call a python
-script with the <code>Shell</code> vba function to work with the data.
-</li>
-</ul>
-
-<p>
-If anyhow, you still MUST use Excel, here are some tricks:
-</p>
-<ul class="org-ul">
-<li>Excel
-<ul class="org-ul">
-<li>Pivot table allows to create simple "*-by" summary of your data
-(e.g. "sum-by region", "count-by country").
-</li>
-<li>Filter function and deleting duplicate elements are great built-in
-tools.
-</li>
-<li><code>vlookup</code>: the best way to reproduce the behavior of hash-map in Excel.
-</li>
-</ul>
-</li>
-<li>VBA
-<ul class="org-ul">
-<li>Record macro is your best friend.
-</li>
-<li>Turn off display updating when running macros.
-</li>
-<li>If possible, work with arrays in memory and not cells on the
-spreadsheet.
-</li>
-<li>Use Excel functions whenever possible.
-</li>
-<li>Include Microsoft.Scripting module to get hash-maps (associative
-arrays).
-</li>
-<li>When filtering data, use the <code>filter</code> function from Excel with the
-correct parameters.
-</li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5"><span class="section-number-2">5</span> Intermediate topics</h2>
-<div class="outline-text-2" id="text-5">
-<p>
-I consider here some intermediate topics
-</p>
-</div>
-
-<div id="outline-container-sec-5-1" class="outline-3">
-<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Ubuntu</h3>
-<div class="outline-text-3" id="text-5-1">
-<p>
-I don't have much to add about which OS you should use. You can argue that
-most paid job require some knowledge of C# and the .Net platform.
-Nonetheless, most open source tools have been thoroughly tested on Linux
-machines, hence you will avoid some subtle bugs by adopting Ubuntu.
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-5-2" class="outline-3">
-<h3 id="sec-5-2"><span class="section-number-3">5.2</span> Emacs</h3>
-<div class="outline-text-3" id="text-5-2">
-<p>
-I would like use the same tool at work and at home, as I want to be able to
-improve my skills continuously, especially when I am working (and we do use
-Emacs at my working place now).  The alternative solution is to use the
-IDEs.  Nevertheless, most of them are quite complicated (which is also true
-for Emacs) and the possibilities of customizing them are quite limited.
-</p>
-
-<p>
-Moreover, using a bare text editor force professionals to understand the
-engineering process behind their products when compiling.
-</p>
-
-<p>
-One of the best argument, I have heard about using Emacs are the following:
-</p>
-<ul class="org-ul">
-<li>Emacs has been here for the past 30 years, and will probably still be
-there in the next 30 years. One of the reason why it could disappear is
-the non-integration of webkit (but we will figure out how to make it).
-</li>
-<li>True integration with UNIX tools: You will find yourself using grep,
-find, top without knowing.
-</li>
-<li>A wonderful way to learn to code as well.
-</li>
-<li>Most importantly: the feeling of mastery. Every day, I learn something
-new about Emacs and I am sure I can use it in my workflow. Otherwise I
-learn something about elisp (which is never bad). Overall, it made me a
-better programmer as well as it gave me the feeling about being able to
-tackle all challenge with a common set of tools.
-</li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-sec-5-3" class="outline-3">
-<h3 id="sec-5-3"><span class="section-number-3">5.3</span> Document generation</h3>
-<div class="outline-text-3" id="text-5-3">
-<p>
-A good option in combination with Emacs is to use <b>Org-mode</b> for <b>literate
-programming</b>. Org-mode is an equivalent of markdown (and is also supported
-by pandoc). Nevertheless, it provides a better integration with Emacs and
-its default HTML and LaTeX output hare nicer. Bonus: it is a really good
-TODO list remainder.
-</p>
-
-<p>
-Literate programming is also an interesting topic: usually, programmers
-write code, filled with comments, but this could or should be
-reverse. Authors should write text with code blocks describing their
-views. Org-mode totally support this type of document. For a good
-alternative, search for <code>rmarkdown</code>.
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-5-4" class="outline-3">
-<h3 id="sec-5-4"><span class="section-number-3">5.4</span> Python</h3>
-<div class="outline-text-3" id="text-5-4">
-<p>
-The <b>Scipy</b> stack includes most of what you will ever need to replace
-matlab: numpy (approximately matrix calculation), scipy (optimization and
-numerical mathematics), ipython (a better repl/interactive console), pandas
-(data.frame like data structure), simpy (symbolic mathematics) and nose (for
-testing). <b>pandas</b> is the most important package to learn for data analysis.
-</p>
-
-<p>
-<b>Scikit-learn</b> offers most machine learning algorithm for statistical
-prediction. <b>Seaborn</b> is a great abstraction over matplotlib for plotting
-*data.
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-5-5" class="outline-3">
-<h3 id="sec-5-5"><span class="section-number-3">5.5</span> R</h3>
-<div class="outline-text-3" id="text-5-5">
-<p>
-There are several types of R packages: packages providing statistical
-models, others providing infrastructures for performing analysis. I will
-give you some advice for the second type of packages.
-</p>
-
-<p>
-<b>simsalapar</b> abstract and provide a great framework for computing simulation
-over grids of parameters.
-</p>
-
-<p>
-<b>data.table</b> is probably the most interesting packages. It offers a C++
-implementation of the data.frame data structure and provides incredible
-speed up. The <code>fread</code> function also accelerate incredibly the loading of
-<i>csv</i> data. One of the drawback is the way it uses expression and is maybe
-not the most natural way for R programmers to use it.
-</p>
-
-<p>
-<b>ggplot2</b> and <b>lattice</b> make the plotting experience of R even
-sweeter. lattice gives quick visualization for faceting (e.g. xy-plot for
-<i>x</i> against <i>y</i> grouped by <i>z</i>), whereas ggplot2 wraps the <b>grid</b> package to
-make highly customized data visualization. lattice is often faster than
-ggplot2, but ggplot2 is maintained and its output can customized.
-</p>
-
-<p>
-<b>caret</b> abstracts the best practices of data analysis to allow more
-flexibility. It offers a framework to compare and average models and perform
-the split of data (test-training-evaluation set) automatically.
-</p>
-
-<p>
-<b>parallel</b> come by default in R. I suggest to learn how to write parallel
-code with clusters and not with multiple cores. The reason is that forking
-copies completely your master thread which could cause some problem if you
-have a finite amount of RAM.
-</p>
-
-<p>
-<b>timeDate</b> from the RiskMetrics team is a really appreciable abstraction of
-calendar issue in the financial world.
-</p>
-
-<p>
-<b>regular expression</b> (or <b>regex</b>) are supported by default in R, learn about
-them, they are life savers!
-</p>
-
-<p>
-<b>magrittr</b> provides the pipe operator <code>%&gt;%</code>. More or less, it allows to read
-expression from left to right, compared to inside to outside:
-</p>
-<div class="org-src-container">
-
-<pre class="src src-R">x %&gt;% f %&gt;% <span style="color: #94BFF3;">g</span><span style="color: #DCDCCC;">(</span>y<span style="color: #DCDCCC;">)</span> == <span style="color: #94BFF3;">g</span><span style="color: #DCDCCC;">(</span><span style="color: #94BFF3;">f</span><span style="color: #BFEBBF;">(</span>x<span style="color: #BFEBBF;">)</span>, y<span style="color: #DCDCCC;">)</span> <span style="color: #5F7F5F;"># </span><span style="color: #7F9F7F;">TRUE</span>
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-5-6" class="outline-3">
-<h3 id="sec-5-6"><span class="section-number-3">5.6</span> Statistics: Repeat the basics</h3>
-<div class="outline-text-3" id="text-5-6">
-<p>
-I love shiny statistical learning methods, I mean, I do love them (neural
-networks, lasso/ridge regression, random forest, copula modeling). However, I
-am convinced that for mastery, one do have to repeat the basics often and to
-have solid understanding of what <i>randomness</i> means in statistics.
-</p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6"><span class="section-number-2">6</span> Things that exists which I never used professionally</h2>
-<div class="outline-text-2" id="text-6">
-<p>
-As any curious person, I try to surf on the net and see what could be
-interesting to add to my set of skills. Unfortunately, I could never
-professionally use the tools which I am describing below, but I wanted to
-point at them for the sake of completion.
-</p>
-</div>
-
-<div id="outline-container-sec-6-1" class="outline-3">
-<h3 id="sec-6-1"><span class="section-number-3">6.1</span> Linear Algebra</h3>
-<div class="outline-text-3" id="text-6-1">
-<p>
-Matrix notation is certainly helpful. Nevertheless, for advanced numerical
-computations and optimization, <i>vectorization</i> (using values locations in
-memory to perform calculation) is primordial. I unfortunately never had to
-deal with such constraints, but it would not hurt to have an overview about
-LAPACK, BLAS and ATLAS.
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-6-2" class="outline-3">
-<h3 id="sec-6-2"><span class="section-number-3">6.2</span> C, C++ and Cuda</h3>
-<div class="outline-text-3" id="text-6-2">
-<p>
-<b>C</b> and <b>C++</b> are almost the <i>de facto</i> way to improve R or python code and
-<b>Cuda</b> gives access to the power of your graphic card for computing.
-I do not have a strong opinion of them, I may be too inexperienced.
-</p>
-
-<p>
-What I do know is that for short function, these language are really
-manageable and quit elegant as well.
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-6-3" class="outline-3">
-<h3 id="sec-6-3"><span class="section-number-3">6.3</span> Java (JVM), Clojure, Scala and Jython</h3>
-<div class="outline-text-3" id="text-6-3">
-<p>
-No one would argue that Java is used everywhere. However, the language has
-its constraints on its syntax that makes it quite not enjoyable.
-</p>
-
-<p>
-I really appreciate <b>Clojure</b> for its simplicity and for its tradition for
-Lisp, however, one will more easily find a job with <b>Scala</b>.
-</p>
-
-<p>
-As last resort, <b>Jython</b>, the JVM implementation of python, can also help.
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-6-4" class="outline-3">
-<h3 id="sec-6-4"><span class="section-number-3">6.4</span> Javascript and Clojurescript</h3>
-<div class="outline-text-3" id="text-6-4">
-<p>
-Interactive data visualization is the future and your browser is probably
-one of the best tool to display data. <b>D3.js</b> is one of the best framework
-and <b>metricsgraphics.js</b> wraps around it in order to abstract some of the
-complexities.
-</p>
-
-<p>
-Clojure is a wonderful lisp dialect, and Clojurescript uses the same
-semantics, but targets the Javascript instead of the JVM. Even though I am
-still in the process of experimenting Clojurescript, I am certain that it
-will enhance the maintainability and performance of my code.
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-6-5" class="outline-3">
-<h3 id="sec-6-5"><span class="section-number-3">6.5</span> Python</h3>
-<div class="outline-text-3" id="text-6-5">
-<p>
-<b>Cython</b> seems to be a nice start for optimizing your python code. If you
-really want to go into new fields, <b>Tensorflow</b> from Google is a good start.
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-6-6" class="outline-3">
-<h3 id="sec-6-6"><span class="section-number-3">6.6</span> R</h3>
-<div class="outline-text-3" id="text-6-6">
-<p>
-<b>Rcpp</b> is a wonderful way to interact R with C++.
-</p>
-</div>
-</div>
-</div>
-</div>
-<div id="postamble" class="status">
-<p class="author">Author: David Pham</p>
-<p class="date">Created: 2015-12-31 Don 18:28</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
-</div>
-</body>
+<!DOCTYPE html>
+<!--
+     ==============================================================================
+     "GitHub HTML5 Pandoc Template" v2.1 — by Tristano Ajmone
+     ==============================================================================
+     Copyright © Tristano Ajmone, 2017, MIT License (MIT). Project's home:
+
+   - https://github.com/tajmone/pandoc-goodies
+
+     The CSS in this template reuses source code taken from the following projects:
+
+   - GitHub Markdown CSS: Copyright © Sindre Sorhus, MIT License (MIT):
+     https://github.com/sindresorhus/github-markdown-css
+
+   - Primer CSS: Copyright © 2016-2017 GitHub Inc., MIT License (MIT):
+     http://primercss.io/
+
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     The MIT License
+
+     Copyright (c) Tristano Ajmone, 2017 (github.com/tajmone/pandoc-goodies)
+     Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)
+     Copyright (c) 2017 GitHub Inc.
+
+     "GitHub Pandoc HTML5 Template" is Copyright (c) Tristano Ajmone, 2017, released
+     under the MIT License (MIT); it contains readaptations of substantial portions
+     of the following third party softwares:
+
+     (1) "GitHub Markdown CSS", Copyright (c) Sindre Sorhus, MIT License (MIT).
+     (2) "Primer CSS", Copyright (c) 2016 GitHub Inc., MIT License (MIT).
+
+     Permission is hereby granted, free of charge, to any person obtaining a copy
+     of this software and associated documentation files (the "Software"), to deal
+     in the Software without restriction, including without limitation the rights
+     to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+     copies of the Software, and to permit persons to whom the Software is
+     furnished to do so, subject to the following conditions:
+
+     The above copyright notice and this permission notice shall be included in all
+     copies or substantial portions of the Software.
+
+     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+     IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+     FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+     SOFTWARE.
+     ==============================================================================-->
+<html>
+    <head>
+        
+        
+        
+        <meta charset="utf-8" />
+        <meta name="generator" content="pandoc" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+        
+                <meta name="author" content="David Pham" />
+                
+                
+                
+                
+        <title>Data analysis tools</title>
+        
+        
+        
+        
+        
+        <style type="text/css">
+         @charset "UTF-8";.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#24292e;font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";font-size:16px;line-height:1.5;word-wrap:break-word;box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto;padding:45px}.markdown-body a{color:#0366d6;background-color:transparent;text-decoration:none;-webkit-text-decoration-skip:objects}.markdown-body a:active,.markdown-body a:hover{outline-width:0}.markdown-body a:hover{text-decoration:underline}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body strong{font-weight:600}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1{font-size:2em;margin:.67em 0;padding-bottom:.3em;border-bottom:1px solid #eaecef}.markdown-body h2{padding-bottom:.3em;font-size:1.5em;border-bottom:1px solid #eaecef}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#6a737d}.markdown-body img{border-style:none}.markdown-body svg:not(:root){overflow:hidden}.markdown-body hr{box-sizing:content-box;height:.25em;margin:24px 0;padding:0;overflow:hidden;background-color:#e1e4e8;border:0}.markdown-body hr::before{display:table;content:""}.markdown-body hr::after{display:table;clear:both;content:""}.markdown-body input{margin:0;overflow:visible;font:inherit;font-family:inherit;font-size:inherit;line-height:inherit}.markdown-body [type=checkbox]{box-sizing:border-box;padding:0}.markdown-body *{box-sizing:border-box}.markdown-body blockquote{margin:0}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dd{margin-left:0}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body code{font-family:SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace}.markdown-body pre{font:12px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;word-wrap:normal}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body blockquote{padding:0 1em;color:#6a737d;border-left:.25em solid #dfe2e5}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body table{display:block;width:100%;overflow:auto;border-spacing:0;border-collapse:collapse}.markdown-body table th{font-weight:600}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #dfe2e5}.markdown-body table tr{background-color:#fff;border-top:1px solid #c6cbd1}.markdown-body table tr:nth-child(2n){background-color:#f6f8fa}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body code{padding:.2em 0;margin:0;font-size:85%;background-color:rgba(27,31,35,.05);border-radius:3px}.markdown-body code::after,.markdown-body code::before{letter-spacing:-.2em;content:" "}.markdown-body pre>code{padding:0;margin:0;font-size:100%;word-break:normal;white-space:pre;background:0 0;border:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f6f8fa;border-radius:3px}.markdown-body pre code{display:inline;max-width:auto;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body pre code::after,.markdown-body pre code::before{content:normal}.markdown-body .full-commit .btn-outline:not(:disabled):hover{color:#005cc5;border-color:#005cc5}.markdown-body kbd{box-shadow:inset 0 -1px 0 #959da5;display:inline-block;padding:3px 5px;font:11px/10px SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;color:#444d56;vertical-align:middle;background-color:#fcfcfc;border:1px solid #c6cbd1;border-bottom-color:#959da5;border-radius:3px;box-shadow:inset 0 -1px 0 #959da5}.markdown-body :checked+.radio-label{position:relative;z-index:1;border-color:#0366d6}.markdown-body .task-list-item{list-style-type:none}.markdown-body .task-list-item+.task-list-item{margin-top:3px}.markdown-body .task-list-item input{margin:0 .2em .25em -1.6em;vertical-align:middle}.markdown-body::before{display:table;content:""}.markdown-body::after{display:table;clear:both;content:""}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.Alert,.Error,.Note,.Success,.Warning{padding:11px;margin-bottom:24px;border-style:solid;border-width:1px;border-radius:4px}.Alert p,.Error p,.Note p,.Success p,.Warning p{margin-top:0}.Alert p:last-child,.Error p:last-child,.Note p:last-child,.Success p:last-child,.Warning p:last-child{margin-bottom:0}.Alert{color:#246;background-color:#e2eef9;border-color:#bac6d3}.Warning{color:#4c4a42;background-color:#fff9ea;border-color:#dfd8c2}.Error{color:#911;background-color:#fcdede;border-color:#d2b2b2}.Success{color:#22662c;background-color:#e2f9e5;border-color:#bad3be}.Note{color:#2f363d;background-color:#f6f8fa;border-color:#d5d8da}.Alert h1,.Alert h2,.Alert h3,.Alert h4,.Alert h5,.Alert h6{color:#246;margin-bottom:0}.Warning h1,.Warning h2,.Warning h3,.Warning h4,.Warning h5,.Warning h6{color:#4c4a42;margin-bottom:0}.Error h1,.Error h2,.Error h3,.Error h4,.Error h5,.Error h6{color:#911;margin-bottom:0}.Success h1,.Success h2,.Success h3,.Success h4,.Success h5,.Success h6{color:#22662c;margin-bottom:0}.Note h1,.Note h2,.Note h3,.Note h4,.Note h5,.Note h6{color:#2f363d;margin-bottom:0}.Alert h1:first-child,.Alert h2:first-child,.Alert h3:first-child,.Alert h4:first-child,.Alert h5:first-child,.Alert h6:first-child,.Error h1:first-child,.Error h2:first-child,.Error h3:first-child,.Error h4:first-child,.Error h5:first-child,.Error h6:first-child,.Note h1:first-child,.Note h2:first-child,.Note h3:first-child,.Note h4:first-child,.Note h5:first-child,.Note h6:first-child,.Success h1:first-child,.Success h2:first-child,.Success h3:first-child,.Success h4:first-child,.Success h5:first-child,.Success h6:first-child,.Warning h1:first-child,.Warning h2:first-child,.Warning h3:first-child,.Warning h4:first-child,.Warning h5:first-child,.Warning h6:first-child{margin-top:0}h1.title,p.subtitle{text-align:center}h1.title.followed-by-subtitle{margin-bottom:0}p.subtitle{font-size:1.5em;font-weight:600;line-height:1.25;margin-top:0;margin-bottom:16px;padding-bottom:.3em}div.line-block{white-space:pre-line}
+        </style>
+        
+        <style type="text/css">code{white-space: pre;}</style>
+        
+                
+                <style type="text/css">
+         code.sourceCode > span { display: inline-block; line-height: 1.25; }
+         code.sourceCode > span { color: inherit; text-decoration: inherit; }
+         code.sourceCode > span:empty { height: 1.2em; }
+         .sourceCode { overflow: visible; }
+         code.sourceCode { white-space: pre; position: relative; }
+         div.sourceCode { margin: 1em 0; }
+         pre.sourceCode { margin: 0; }
+         @media screen {
+         div.sourceCode { overflow: auto; }
+         }
+         @media print {
+         code.sourceCode { white-space: pre-wrap; }
+         code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+         }
+         pre.numberSource code
+           { counter-reset: source-line 0; }
+         pre.numberSource code > span
+           { position: relative; left: -4em; counter-increment: source-line; }
+         pre.numberSource code > span > a:first-child::before
+           { content: counter(source-line);
+             position: relative; left: -1em; text-align: right; vertical-align: baseline;
+             border: none; display: inline-block;
+             -webkit-touch-callout: none; -webkit-user-select: none;
+             -khtml-user-select: none; -moz-user-select: none;
+             -ms-user-select: none; user-select: none;
+             padding: 0 4px; width: 4em;
+             color: #aaaaaa;
+           }
+         pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+         div.sourceCode
+           {   }
+         @media screen {
+         code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+         }
+         code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+         code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+         code span.at { color: #7d9029; } /* Attribute */
+         code span.bn { color: #40a070; } /* BaseN */
+         code span.bu { } /* BuiltIn */
+         code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+         code span.ch { color: #4070a0; } /* Char */
+         code span.cn { color: #880000; } /* Constant */
+         code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+         code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+         code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+         code span.dt { color: #902000; } /* DataType */
+         code span.dv { color: #40a070; } /* DecVal */
+         code span.er { color: #ff0000; font-weight: bold; } /* Error */
+         code span.ex { } /* Extension */
+         code span.fl { color: #40a070; } /* Float */
+         code span.fu { color: #06287e; } /* Function */
+         code span.im { } /* Import */
+         code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+         code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+         code span.op { color: #666666; } /* Operator */
+         code span.ot { color: #007020; } /* Other */
+         code span.pp { color: #bc7a00; } /* Preprocessor */
+         code span.sc { color: #4070a0; } /* SpecialChar */
+         code span.ss { color: #bb6688; } /* SpecialString */
+         code span.st { color: #4070a0; } /* String */
+         code span.va { color: #19177c; } /* Variable */
+         code span.vs { color: #4070a0; } /* VerbatimString */
+         code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+        </style>
+                
+                
+                
+        <!--[if lt IE 9]>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+        <![endif]-->
+        
+                
+    </head>
+    <body>
+        <article class="markdown-body" style="width: 640px" >
+            
+                        
+                        <header>
+                <h1 class="title">Data analysis tools</h1>
+                
+                                
+                                <p class="author">David Pham</p>
+                                
+                                
+                                
+            </header>
+                        
+            
+                        
+            <h1 id="introduction">Introduction</h1>
+            <p>A friend ask me what I would recommend to learn if someone wanted to join the field of quantitative finance, machine learning or statistics/data science (the basic skills are similar). He also asked to make some small remarks on why these tools were relevant.</p>
+            <p>First of all, this is only a matter of personal taste and they are a lot of reason why someone would learn and act differently, but my hope is that I can provide some justification on why I invested time to learn these tools.</p>
+            <p>I personally use all the following tools on recurrent basis and I would advise to really to learn the basics and use the programs that really help you in your daily work. Obviously, this list does miss few programs/languages, the reason is probably that I can not assert that I used these other languages enough to have a decent opinion of them.</p>
+            <h2 id="general-advice">General advice</h2>
+            <p>If I may give only one advice, it would be the following:</p>
+            <blockquote>
+            <p>Do Not Reinvent The Wheel.</p>
+            </blockquote>
+            <p>Search hard for a solution of a problem, or try to shape a problem into a solved problem. Even if you are the best scientist and coder, great professionals almost always win time by only copy-pasting and understanding solutions that already exists. However, during your training, retry to rewrite all the scripts that you learn: one learns about typos and subtle mistakes by doing so.</p>
+            <h1 id="quick-overview">Quick overview</h1>
+            <p>This is a list of tools I genuinely recommend to learn and use in our daily life when interacting with a computer.</p>
+            <p>A good point to remember about the suggestions is they originate from my (little) experience and my concern about tractability of the analysis, reproducible research, and productivity.</p>
+            <p>Let's get started! Here is a short version:</p>
+            <ul>
+            <li><strong>Ubuntu</strong>. Just do yourself a favor and work in an UNIX environment. <a href="https://ubuntugnome.org/">Ubuntu Gnome homepage</a></li>
+            <li><strong>Emacs</strong> as your environment: write and code in any language without ever without leaving your f/j keys in the same consistent environment. <a href="https://www.gnu.org/software/emacs/">Emacs homepage</a> (or <a href="http://vgoulet.act.ulaval.ca/en/emacs/">here</a> for a more friendly-user version).</li>
+            <li><strong>Git</strong> and <strong>Github</strong>: modern way for archiving, collaborating and working with files. <a href="https://git-scm.com/">Git homepage</a></li>
+            <li><strong>Pandoc, markdown</strong>: write content and not the formatting. Markdown and pandoc automate most of the editing tasks. <a href="http://pandoc.org/">Pandoc homepage</a></li>
+            <li><strong>Python</strong>: your first and most fun programming language. Learn to create programs (not types, objects or classes) in a funny and interactive fashion. <a href="https://www.python.org/">Python homepage</a></li>
+            <li><strong>R</strong>: your friend for visualizing, analyzing data and getting trustworthy statistical estimates. <a href="https://cran.r-project.org/">R CRAN homepage</a> and <a href="https://www.rstudio.com/">RStudio IDE</a> (always handy when starting with R).</li>
+            </ul>
+            <h1 id="links">Links</h1>
+            <h2 id="emacs">Emacs</h2>
+            <ul>
+            <li>Start with <code>alt-x help-with-tutorial</code>, to get the first introduction.</li>
+            <li><a href="http://ess.r-project.org/index.php?Section=download">Emacs with R</a></li>
+            <li>Some nice introduction from <a href="https://www.youtube.com/channel/UCGM8KgUXqsS4d8-4rgWRWKg">Udacity</a>.</li>
+            </ul>
+            <h2 id="data-analysis">Data analysis</h2>
+            <ul>
+            <li><a href="http://www.math.uwaterloo.ca/~mhofert/contents/guidelines.pdf">Guidelines for Statistical Projects: Coding and Typography</a>: Great reading and advice for writing LaTeX documents and R Code.</li>
+            </ul>
+            <h2 id="git-and-github">Git and Github</h2>
+            <ul>
+            <li><a href="https://www.udacity.com/course/how-to-use-git-and-github--ud775">Gentle introduction</a> to git and github.</li>
+            <li><a href="https://udacity.github.io/git-styleguide/">Udacity guideline</a> for editing git commits.</li>
+            <li><a href="https://git-scm.com/">Git official website</a></li>
+            </ul>
+            <h2 id="python">Python</h2>
+            <ul>
+            <li><a href="https://www.udacity.com/course/intro-to-computer-science--cs101">Best introduction ever</a> to python.</li>
+            <li><a href="http://www.scipy.org/">Scipy</a></li>
+            <li><a href="http://scikit-learn.org/">Scikit</a></li>
+            <li><a href="http://stanford.edu/~mwaskom/software/seaborn">Seaborn</a></li>
+            <li>Deep learning library.</li>
+            </ul>
+            <h2 id="r">R</h2>
+            <ul>
+            <li><a href="http://arxiv.org/pdf/1309.4402v1">Simsalapar</a> documentation</li>
+            <li><a href="http://blog.rstudio.org/">RStudio blog</a>: a good point for looking at best computer practices.</li>
+            </ul>
+            <h2 id="blog-post">Blog post</h2>
+            <ul>
+            <li><a href="https://web.archive.org/web/20140730035018/https://michaelochurch.wordpress.com/2012/07/27/six-languages-to-master/">Language to master</a>, when beginning to learn software engineering.</li>
+            <li><a href="https://michaelochurch.wordpress.com/2012/08/15/what-is-spaghetti-code/">Spaghetti code</a>, what to avoid in bigger projects.</li>
+            <li><a href="https://michaelochurch.wordpress.com/2013/01/09/ide-culture-vs-unix-philosophy/">IDE vs Unix philosophy</a>, or why Emacs is awesome. Make small things, that do one thing well.</li>
+            <li><a href="http://www.joelonsoftware.com/articles/Unicode.html">Unicode</a>: If you don't want to smash your head against the wall because of accent.</li>
+            </ul>
+            <h1 id="details">Details</h1>
+            <p>The goal of this section is to provide a basic justification on why I am using these programs or framework.</p>
+            <h2 id="ubuntu"><strong>Ubuntu</strong></h2>
+            <p>Any Linux distribution would be fine. However, I would recommend Ubuntu as the first point of entry to the linux world. The advantage over Windows are following.</p>
+            <ul>
+            <li>Open source software: Most advanced tools for data analysis rely on some tools of the UNIX world and their installation is extremely simplified.</li>
+            <li>Ubiquitous terminal: interacting with several languages, tools is the favored way of creating analysis (small modular pieces). Using the shell allow us to easily automate the boring tasks with shell scripts.</li>
+            <li>Remote computations: Most cloud computing services are based on a UNIX distribution.</li>
+            </ul>
+            <h2 id="text-editoride-emacs">Text editor/IDE: <strong>Emacs</strong></h2>
+            <p>This topic is probably one of the most controversial. Most of my work goes around reading and writing. I am unfortunately paid to write and authors things: code for analysis, automating tasks, formatting or cleaning data, and last but not the least, writing documentations and reports. One of the source of inefficiency when writing documents is the time we move our hands from the keyboard to the mouse in order to move the cursor around a document or characters. Emacs provide a rich amount of shortcuts to help the user to write everything without leaving the keyboard and it also allows to completely modify them as well.</p>
+            <ul>
+            <li>Truly personal editor: One of the most interesting feature is also that one can really suits Emacs to its need. For example, I have a Swiss keyboard, and deleting backwards is a task I often have to do. However, with my keyboard layout, I have to move little finger to backspace, which disturb my right hand position. Hence, to solve this problem, I simply bound <em>CTRL-é</em> and <em>ALT-é</em> to <code>delete-char-backwards</code> and <code>delete-word-backward</code>.</li>
+            <li>One editor for all languages: With Emacs, you will develop code (python, R, C++ and clojure are supported), edit text (LaTeX and Markdown) and use the shell, all with a consistent set of shortcuts that you set.</li>
+            </ul>
+            <p>Note that I do not claim, it will be easy at the beginning. However, after a few days, Emacs will save you thirty minutes to a hour each day!</p>
+            <h2 id="document-generation-pandoc-markdown-latex">Document generation: <strong>Pandoc</strong> (markdown, LaTeX)</h2>
+            <p>Stop using Word or Libre Office Writer. Just stop it right now! The flaw with these document editors is the user has only one interface with the program for two distinct tasks: content creation and formatting.</p>
+            <p>Users often want standard format and focus on the content. LaTeX and markdown are markup language that abstract the formatting process from the user. Then, the computer takes care of the references, the layout of listings, the exact amount of spaces around words.</p>
+            <p><strong>Markdown</strong> is simplified version of LaTeX (but still really capable) and <strong>pandoc</strong> is a program that can freely convert your markdown or LaTeX file into pdf, html or even docx.</p>
+            <p>A good argument in favor of these pure text file is that version control come almost for free and UNIX diff functions (to display difference between documents) works seamlessly.</p>
+            <h2 id="programming-languages-for-data-analysis-python-and-r">Programming languages for data analysis: <strong>python</strong> and <strong>R</strong></h2>
+            <p>There is no clear winner between the two languages when analyzing data and each of them has its own advantages. Both provide great advantages:</p>
+            <ul>
+            <li>REPL (interactive console for coding);</li>
+            <li>Open source;</li>
+            <li>A wonderful open source community;</li>
+            <li>An uncountable set of tutorials for beginning;</li>
+            <li>Object-oriented and functional programming paradigm;</li>
+            <li>Easy interaction with most used compiled languages (C, C++, Java).</li>
+            <li>Exceptional documentation for the base package.</li>
+            </ul>
+            <p>Advice: if you have little experience in coding, I totally support learning <strong>python</strong> first and then quickly pick up with <strong>R</strong>, because <strong>python</strong> also emphasis data structures (aka speed of your code) and software engineering (maintainability and reliability).</p>
+            <p>Main differences are emphasized in the next subsections. Note, should you choose to use <strong>python</strong>, please try to learn <strong>python 3</strong> instead of 2.7 as it will be depreciated in 2020, and no 2.8 is planed.</p>
+            <h3 id="python-1">Python</h3>
+            <p>Python is often favored by the machine learning community.</p>
+            <ul>
+            <li>All-battery included programming languages: there is a module for almost everything in the base installation (csv, itertools, regular expression).</li>
+            <li>Explicit data structure (list, tuple, set, frozenset, hash-map/dictionary).</li>
+            <li>There is only ONE true way of writing code (so most people tend to have the same style).</li>
+            <li>It has one of the most beautiful syntax among programming languages.</li>
+            <li>There is a default support for modules (i.e. writing independent code in other files and reusing them) and it is trivial to use (<code>import
+             my_other_file</code>, wher <code>my_other_file.py</code> contains what you want to reuse).</li>
+            </ul>
+            <h3 id="r-1">R</h3>
+            <p>R is the standard programming language for most data analysts.</p>
+            <ul>
+            <li>Almost any statistical learning algorithm has already been implemented and is available on CRAN.</li>
+            <li>Installation of new packages is a lot easier, when the user has no <strong>admin rights</strong>. This is really important as most companies do not provide them to their employees.</li>
+            <li>Programming language created by statisticians for statisticians.</li>
+            <li>Syntax is really targeted for performing data analysis.</li>
+            <li>Fairly high level language. Packages should take care of most system error (segmentation fault or out of bound memory).</li>
+            <li>Amazing data visualization capabilities.</li>
+            <li>Interactive data visualization with javascript is definitively more advanced than with python.</li>
+            <li><em>Vectorized</em> operations are favored to <code>for</code> loop.</li>
+            </ul>
+            <h2 id="version-control-git-and-github">Version control: <strong>git</strong> and <strong>github</strong></h2>
+            <p>I have honestly used them since only recently. Hence my opinion and my experience might not be really significant. But version control definitively helps. It avoids having archive folders everywhere, and it tracts the development of our work.</p>
+            <h2 id="finally-if-you-want-to-get-a-corporate-job">Finally, if you want to get a corporate job</h2>
+            <h3 id="sql-for-databases">SQL for databases</h3>
+            <p>I am honestly not a specialist of databases, especially as I prefer simple format such as csv. But as data grow larger, it is clear that database have advantage. I suppose we will only remain user, so it does help to know the basics of SQL. From there, a lot of language are similar but if one has to write queries often, some packages from python or R will help to not become crazy.</p>
+            <h3 id="excel-vba">Excel, VBA</h3>
+            <p>Excel and VBA are the most dangerous tools in the corporate world. Anyone can make extremely advanced data analysis and plots. However, it is almost impossible to reproduce the research and to avoid mistakes. Hence my advice is that, if possible, try everything to avoid using with Excel files:</p>
+            <ul>
+            <li>Use some python module to interact with Excel.</li>
+            <li>Create vba macros to export/import data in <code>.csv</code> and call a python script with the <code>Shell</code> vba function to work with the data.</li>
+            </ul>
+            <p>If anyhow, you still MUST use Excel, here are some tricks:</p>
+            <ul>
+            <li>Excel
+            <ul>
+            <li>Pivot table allows to create simple "*-by" summary of your data (e.g. "sum-by region", "count-by country").</li>
+            <li>Filter function and deleting duplicate elements are great built-in tools.</li>
+            <li><code>vlookup</code>: the best way to reproduce the behavior of hash-map in Excel.</li>
+            </ul></li>
+            <li>VBA
+            <ul>
+            <li>Record macro is your best friend.</li>
+            <li>Turn off display updating when running macros.</li>
+            <li>If possible, work with arrays in memory and not cells on the spreadsheet.</li>
+            <li>Use Excel functions whenever possible.</li>
+            <li>Include Microsoft.Scripting module to get hash-maps (associative arrays).</li>
+            <li>When filtering data, use the <code>filter</code> function from Excel with the correct parameters.</li>
+            </ul></li>
+            </ul>
+            <h1 id="intermediate-topics">Intermediate topics</h1>
+            <p>I consider here some intermediate topics</p>
+            <h2 id="ubuntu-1">Ubuntu</h2>
+            <p>I don't have much to add about which OS you should use. You can argue that most paid job require some knowledge of C# and the .Net platform. Nonetheless, most open source tools have been thoroughly tested on Linux machines, hence you will avoid some subtle bugs by adopting Ubuntu.</p>
+            <h2 id="emacs-1">Emacs</h2>
+            <p>I would like use the same tool at work and at home, as I want to be able to improve my skills continuously, especially when I am working (and we do use Emacs at my working place now). The alternative solution is to use the IDEs. Nevertheless, most of them are quite complicated (which is also true for Emacs) and the possibilities of customizing them are quite limited.</p>
+            <p>Moreover, using a bare text editor force professionals to understand the engineering process behind their products when compiling.</p>
+            <p>One of the best argument, I have heard about using Emacs are the following:</p>
+            <ul>
+            <li>Emacs has been here for the past 30 years, and will probably still be there in the next 30 years. One of the reason why it could disappear is the non-integration of webkit (but we will figure out how to make it).</li>
+            <li>True integration with UNIX tools: You will find yourself using grep, find, top without knowing.</li>
+            <li>A wonderful way to learn to code as well.</li>
+            <li>Most importantly: the feeling of mastery. Every day, I learn something new about Emacs and I am sure I can use it in my workflow. Otherwise I learn something about elisp (which is never bad). Overall, it made me a better programmer as well as it gave me the feeling about being able to tackle all challenge with a common set of tools.</li>
+            </ul>
+            <h2 id="document-generation">Document generation</h2>
+            <p>A good option in combination with Emacs is to use <strong>Org-mode</strong> for <strong>literate programming</strong>. Org-mode is an equivalent of markdown (and is also supported by pandoc). Nevertheless, it provides a better integration with Emacs and its default HTML and LaTeX output hare nicer. Bonus: it is a really good TODO list remainder.</p>
+            <p>Literate programming is also an interesting topic: usually, programmers write code, filled with comments, but this could or should be reverse. Authors should write text with code blocks describing their views. Org-mode totally support this type of document. For a good alternative, search for <code>rmarkdown</code>.</p>
+            <h2 id="python-2">Python</h2>
+            <p>The <strong>Scipy</strong> stack includes most of what you will ever need to replace matlab: numpy (approximately matrix calculation), scipy (optimization and numerical mathematics), ipython (a better repl/interactive console), pandas (data.frame like data structure), simpy (symbolic mathematics) and nose (for testing). <strong>pandas</strong> is the most important package to learn for data analysis.</p>
+            <p><strong>Scikit-learn</strong> offers most machine learning algorithm for statistical prediction. <strong>Seaborn</strong> is a great abstraction over matplotlib for plotting *data.</p>
+            <h2 id="r-2">R</h2>
+            <p>There are several types of R packages: packages providing statistical models, others providing infrastructures for performing analysis. I will give you some advice for the second type of packages.</p>
+            <p><strong>simsalapar</strong> abstract and provide a great framework for computing simulation over grids of parameters.</p>
+            <p><strong>data.table</strong> is probably the most interesting packages. It offers a C++ implementation of the data.frame data structure and provides incredible speed up. The <code>fread</code> function also accelerate incredibly the loading of <em>csv</em> data. One of the drawback is the way it uses expression and is maybe not the most natural way for R programmers to use it.</p>
+            <p><strong>ggplot2</strong> and <strong>lattice</strong> make the plotting experience of R even sweeter. lattice gives quick visualization for faceting (e.g. xy-plot for <em>x</em> against <em>y</em> grouped by <em>z</em>), whereas ggplot2 wraps the <strong>grid</strong> package to make highly customized data visualization. lattice is often faster than ggplot2, but ggplot2 is maintained and its output can customized.</p>
+            <p><strong>caret</strong> abstracts the best practices of data analysis to allow more flexibility. It offers a framework to compare and average models and perform the split of data (test-training-evaluation set) automatically.</p>
+            <p><strong>parallel</strong> come by default in R. I suggest to learn how to write parallel code with clusters and not with multiple cores. The reason is that forking copies completely your master thread which could cause some problem if you have a finite amount of RAM.</p>
+            <p><strong>timeDate</strong> from the RiskMetrics team is a really appreciable abstraction of calendar issue in the financial world.</p>
+            <p><strong>regular expression</strong> (or <strong>regex</strong>) are supported by default in R, learn about them, they are life savers!</p>
+            <p><strong>magrittr</strong> provides the pipe operator <code>%&gt;%</code>. More or less, it allows to read expression from left to right, compared to inside to outside:</p>
+            <div class="sourceCode" id="cb1" data-org-language="R"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>x <span class="op">%&gt;%</span><span class="st"> </span>f <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">g</span>(y) <span class="op">==</span><span class="st"> </span><span class="kw">g</span>(<span class="kw">f</span>(x), y) <span class="co"># TRUE</span></span></code></pre></div>
+            <h2 id="statistics-repeat-the-basics">Statistics: Repeat the basics</h2>
+            <p>I love shiny statistical learning methods, I mean, I do love them (neural networks, lasso/ridge regression, random forest, copula modeling). However, I am convinced that for mastery, one do have to repeat the basics often and to have solid understanding of what <em>randomness</em> means in statistics.</p>
+            <h1 id="things-that-exists-which-i-never-used-professionally">Things that exists which I never used professionally</h1>
+            <p>As any curious person, I try to surf on the net and see what could be interesting to add to my set of skills. Unfortunately, I could never professionally use the tools which I am describing below, but I wanted to point at them for the sake of completion.</p>
+            <h2 id="linear-algebra">Linear Algebra</h2>
+            <p>Matrix notation is certainly helpful. Nevertheless, for advanced numerical computations and optimization, <em>vectorization</em> (using values locations in memory to perform calculation) is primordial. I unfortunately never had to deal with such constraints, but it would not hurt to have an overview about LAPACK, BLAS and ATLAS.</p>
+            <h2 id="c-c-and-cuda">C, C++ and Cuda</h2>
+            <p><strong>C</strong> and <strong>C++</strong> are almost the <em>de facto</em> way to improve R or python code and <strong>Cuda</strong> gives access to the power of your graphic card for computing. I do not have a strong opinion of them, I may be too inexperienced.</p>
+            <p>What I do know is that for short function, these language are really manageable and quit elegant as well.</p>
+            <h2 id="java-jvm-clojure-scala-and-jython">Java (JVM), Clojure, Scala and Jython</h2>
+            <p>No one would argue that Java is used everywhere. However, the language has its constraints on its syntax that makes it quite not enjoyable.</p>
+            <p>I really appreciate <strong>Clojure</strong> for its simplicity and for its tradition for Lisp, however, one will more easily find a job with <strong>Scala</strong>. [Note: I used Clojure and ClojureScript professionally and they rock].</p>
+            <p>As last resort, <strong>Jython</strong>, the JVM implementation of python, can also help (but only support of 2.7 syntax).</p>
+            <h2 id="javascript-and-clojurescript">Javascript and ClojureScript</h2>
+            <p>Interactive data visualization is the future and your browser is probably one of the best tool to display data. <strong>D3.js</strong> is one of the best framework and <strong>metricsgraphics.js</strong> wraps around it in order to abstract some of the complexities.</p>
+            <p>Clojure is a wonderful lisp dialect, and ClojureScript uses the same semantics, but targets the Javascript instead of the JVM.</p>
+            <p>If you need to make a choice, use ClojureScript, even if the path is harder, it will payoff immensely.</p>
+            <h2 id="python-3">Python</h2>
+            <p><strong>Cython</strong> seems to be a nice start for optimizing your python code. If you really want to go into new fields, <strong>Tensorflow</strong> from Google is a good start.</p>
+            <h2 id="r-3">R</h2>
+            <p><strong>Rcpp</strong> is a wonderful way to interact R with C++.</p>
+            
+                        
+        </article>
+    </body>
 </html>

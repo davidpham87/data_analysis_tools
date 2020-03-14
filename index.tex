@@ -1,0 +1,491 @@
+% Created 2020-03-14 Sat 14:21
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{David Pham}
+\date{\today}
+\title{Data analysis tools}
+\hypersetup{
+ pdfauthor={David Pham},
+ pdftitle={Data analysis tools},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.1.9)},
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+\section{Introduction}
+\label{sec:org439afed}
+
+A friend ask me what I would recommend to learn if someone wanted to join the
+field of quantitative finance, machine learning or statistics (the basic
+skills are similar). He also asked to make some small remarks on why these
+tools were relevant.
+
+First of all, this is only a matter of personal taste and they are a lot of
+reason why someone would learn and act differently, but my hope is that I can
+provide some justification on why I invested time to learn these tools.
+
+I personally use all the following tools on recurrent basis and I would
+advise to really to learn the basics and use the programs that really help
+you in your daily work. Obviously, this list does miss few
+programs/languages, the reason is probably that I can not assert that I used
+these other languages enough to have a decent opinion of them.
+
+\subsection{General advice}
+\label{sec:orgd6d2830}
+If I may give only one advice, it would be the following:
+
+\begin{quote}
+DO NOT REINVENT THE WHEEL.
+\end{quote}
+
+Search hard for a solution of a problem, or try to shape a problem into a
+solved problem. Even if you are the best scientist and coder, great
+professionals almost always win time by only copy-pasting and understanding
+solutions that already exists.  However, during your training, retry to
+rewrite all the scripts that you learn: one learns about typos and subtle
+mistakes by doing so.
+
+\section{Quick overview}
+\label{sec:org00bf32d}
+This is a list of tools I genuinely recommend to learn and use in our daily
+life when interacting with a computer.
+
+A good point to remember about the suggestions is they originate from my
+(little) experience and my concern about tractability of the analysis,
+reproducible research, and productivity.
+
+Let's get started!  Here is a short version:
+\begin{itemize}
+\item \textbf{Ubuntu}. Just do yourself a favor and work in an UNIX environment.
+\href{https://ubuntugnome.org/}{Ubuntu Gnome homepage}
+\item \textbf{Emacs} as your environment: write and code in any language without ever
+without leaving your f/j keys in the same consistent environment.
+\href{https://www.gnu.org/software/emacs/}{Emacs homepage} (or \href{http://vgoulet.act.ulaval.ca/en/emacs/}{here} for a more friendly-user version).
+\item \textbf{Git} and \textbf{Github}: modern way for archiving, collaborating and working
+with files.
+\href{https://git-scm.com/}{Git homepage}
+\item \textbf{Pandoc, markdown}: write content and not the formatting. Markdown and pandoc
+automate most of the editing tasks.
+\href{http://pandoc.org/}{Pandoc homepage}
+\item \textbf{Python}: your first and most fun programming language. Learn to create
+programs (not class) in a funny and interactive fashion.
+\href{https://www.python.org/}{Python homepage}
+\item \textbf{R}: your friend for visualizing and analyzing data.
+\href{https://cran.r-project.org/}{R CRAN homepage} and \href{https://www.rstudio.com/}{RStudio IDE} (always handy when starting with R).
+\end{itemize}
+
+\section{Links}
+\label{sec:org5437cbb}
+\subsection{Emacs}
+\label{sec:org0f2c551}
+\begin{itemize}
+\item Start with \texttt{alt-x help-with-tutorial}, to get the first introduction.
+\item \href{http://ess.r-project.org/index.php?Section=download}{Emacs with R}
+\item Some nice introduction from \href{https://www.youtube.com/channel/UCGM8KgUXqsS4d8-4rgWRWKg}{Udacity}.
+\end{itemize}
+
+\subsection{Data analysis}
+\label{sec:org7308a96}
+\begin{itemize}
+\item \href{http://www.math.uwaterloo.ca/\~mhofert/contents/guidelines.pdf}{Guidelines for Statistical Projects: Coding and Typography}:  Great reading
+and advice for writing \LaTeX{} documents and R Code.
+\end{itemize}
+
+\subsection{Git and Github}
+\label{sec:orgafdf1f2}
+\begin{itemize}
+\item \href{https://www.udacity.com/course/how-to-use-git-and-github--ud775}{Gentle introduction} to git and github.
+\item \href{https://udacity.github.io/git-styleguide/}{Udacity guideline} for editing git commits.
+\item \href{https://git-scm.com/}{Git official website}
+\end{itemize}
+
+\subsection{Python}
+\label{sec:org6f571e7}
+\begin{itemize}
+\item \href{https://www.udacity.com/course/intro-to-computer-science--cs101}{Best introduction ever} to python.
+\item \href{http://www.scipy.org/}{Scipy}
+\item \href{http://scikit-learn.org/}{Scikit}
+\item \href{http://stanford.edu/\~mwaskom/software/seaborn}{Seaborn}
+\end{itemize}
+
+\subsection{R}
+\label{sec:org290c779}
+\begin{itemize}
+\item \href{http://arxiv.org/pdf/1309.4402v1}{Simsalapar} documentation
+\item \href{http://blog.rstudio.org/}{RStudio blog}: a good point for looking at best computer practices.
+\end{itemize}
+
+\subsection{Blog post}
+\label{sec:org8605bae}
+\begin{itemize}
+\item \href{https://michaelochurch.wordpress.com/2012/07/27/six-languages-to-master/}{Language to master}, when beginning to learn software engineering.
+\item \href{https://michaelochurch.wordpress.com/2012/08/15/what-is-spaghetti-code/}{Spaghetti code}, what to avoid in bigger projects.
+\item \href{https://michaelochurch.wordpress.com/2013/01/09/ide-culture-vs-unix-philosophy/}{IDE vs Unix philosophy}, or why Emacs is awesome. Make small things, that do one thing well.
+\item \href{http://www.joelonsoftware.com/articles/Unicode.html}{Unicode}: If you don't want to smash your head against the wall because of accent.
+\end{itemize}
+
+\section{Details}
+\label{sec:org612103d}
+The goal of this section is to provide a basic justification on why I am using
+these programs or framework.
+
+\subsection{\textbf{Ubuntu}}
+\label{sec:org78b2e86}
+Any Linux distribution would be fine.  However, I would recommend Ubuntu as
+the first point of entry to the linux world. The advantage over Windows are
+following.
+\begin{itemize}
+\item Open source software: Most advanced tools for data analysis rely on some
+tools of the UNIX world and their installation is extremely simplified.
+\item Ubiquitous terminal: interacting with several languages, tools is the
+favored way of creating analysis (small modular pieces).  Using the shell
+allow us to easily automate the boring tasks with shell scripts.
+\item Remote computations: Most cloud computing services are based on a UNIX
+distribution.
+\end{itemize}
+
+\subsection{Text editor/IDE: \textbf{Emacs}}
+\label{sec:orgb956bed}
+
+This topic is probably one of the most controversial.  Most of my work goes
+around reading and writing. I am unfortunately paid to write and authors
+things: code for analysis, automating tasks, formatting or cleaning data,
+and last but not the least, writing documentations and reports.  One of the
+source of inefficiency when writing documents is the time we move our hands
+from the keyboard to the mouse in order to move the cursor around a document
+or characters.  Emacs provide a rich amount of shortcuts to help the user to
+write everything without leaving the keyboard and it also allows to
+completely modify them as well.
+\begin{itemize}
+\item Truly personal editor: One of the most interesting feature is also
+that one can really suits Emacs to its need. For example, I have a Swiss
+keyboard, and deleting backwards is a task I often have to do. However,
+with my keyboard layout, I have to move little finger to backspace, which
+disturb my right hand position. Hence, to solve this problem, I simply
+bound \emph{CTRL-é} and \emph{ALT-é} to \texttt{delete-char-backwards} and
+\texttt{delete-word-backward}.
+\item One editor for all languages: With Emacs, you will develop code (python,
+R, C++ and clojure are supported), edit text (\LaTeX{} and Markdown) and use
+the shell, all with a consistent set of shortcuts that you set.
+\end{itemize}
+
+Note that I do not claim, it will be easy at the beginning. However, after a
+few days, Emacs will save you thirty minutes to a hour each day!
+
+\subsection{Document generation: \textbf{Pandoc} (markdown, \LaTeX{})}
+\label{sec:org45fb12c}
+Stop using Word or Libre Office Writer. Just stop it right now!  The flaw
+with these document editors is the user has only one interface with the
+program for two distinct tasks: content creation and formatting.
+
+Users often want standard format and focus on the content. \LaTeX{} and
+markdown are markup language that abstract the formatting process from the
+user. Then, the computer takes care of the references, the layout of
+listings, the exact amount of spaces around words.
+
+\textbf{Markdown} is simplified version of \LaTeX{} (but still really capable) and
+\textbf{pandoc} is a program that can freely convert your markdown or \LaTeX{} file
+into pdf, html or even docx.
+
+A good argument in favor of these pure text file is that version control
+come almost for free and UNIX diff functions (to display difference between
+documents) works seamlessly.
+
+
+\subsection{Programming languages for data analysis:  \textbf{python} and \textbf{R}}
+\label{sec:orge4e3823}
+
+There is no clear winner between the two languages when analyzing data and
+each of them has its own advantages. Both provide great advantages:
+
+\begin{itemize}
+\item REPL (interactive console for coding);
+\item Open source;
+\item A wonderful open source community;
+\item An uncountable set of tutorials for beginning;
+\item Object-oriented and functional programming paradigm;
+\item Easy interaction with most used compiled languages (C, C++, Java).
+\item Exceptional documentation for the base package.
+\end{itemize}
+
+Advice: if you have little experience in coding, I totally support learning
+\textbf{python} first and then quickly pick up with \textbf{R}, because \textbf{python} also
+emphasis data structures (aka speed of your code) and software engineering
+(maintainability and reliability).
+
+Main differences are emphasized in the next subsections. Note, should you
+choose to use \textbf{python}, please try to learn \textbf{python 3} instead of 2.7 as it
+will be depreciated in 2020, and no 2.8 is planed.
+
+\subsubsection{Python}
+\label{sec:orgb666a9b}
+Python is often favored by the machine learning community.
+\begin{itemize}
+\item All-battery included programming languages: there is a module for almost
+everything in the base installation (csv, itertools, regular expression).
+\item Explicit data structure (list, tuple, set, frozenset, hash-map/dictionary).
+\item There is only ONE true way of writing code (so most people tend to have
+the same style).
+\item It has one of the most beautiful syntax among programming languages.
+\item There is a default support for modules (i.e. writing independent code in
+other files and reusing them) and it is trivial to use (\texttt{import
+      my\_other\_file}, wher \texttt{my\_other\_file.py} contains what you want to reuse).
+\end{itemize}
+
+\subsubsection{R}
+\label{sec:org9ae7172}
+R is the standard programming language for most data analysts.
+\begin{itemize}
+\item Almost any statistical learning algorithm has already been implemented
+and is available on CRAN.
+\item Installation of new packages is a lot easier, when the user has no \textbf{admin
+rights}. This is really important as most companies do not provide them
+to their employees.
+\item Programming language created by statisticians for statisticians.
+\item Syntax is really targeted for performing data analysis.
+\item Fairly high level language. Packages should take care of most system error
+(segmentation fault or out of bound memory).
+\item Amazing data visualization capabilities.
+\item Interactive data visualization with javascript is definitively more
+advanced than with python.
+\item \emph{Vectorized} operations are favored to \texttt{for} loop.
+\end{itemize}
+
+\subsection{Version control: \textbf{git} and \textbf{github}}
+\label{sec:org8ce5d97}
+I have honestly used them since only recently. Hence my opinion and my
+experience might not be really significant. But version control definitively
+helps. It avoids having archive folders everywhere, and it tracts the
+development of our work.
+\subsection{Finally, if you want to get a corporate job}
+\label{sec:org656e782}
+\subsubsection{SQL for databases}
+\label{sec:org3c98f41}
+I am honestly not a specialist of databases, especially as I prefer simple
+format such as csv. But as data grow larger, it is clear that database have
+advantage. I suppose we will only remain user, so it does help to know the
+basics of SQL. From there, a lot of language are similar but if one has to
+write queries often, some packages from python or R will help to not
+become crazy.
+\subsubsection{Excel, VBA}
+\label{sec:orgdbf667e}
+Excel and VBA are the most dangerous tools in the corporate world. Anyone
+can make extremely advanced data analysis and plots. However, it is almost
+impossible to reproduce the research and to avoid mistakes. Hence my advice
+is that, if possible, try everything to avoid using with Excel files:
+\begin{itemize}
+\item Use some python module to interact with Excel.
+\item Create vba macros to export/import data in \texttt{.csv} and call a python
+script with the \texttt{Shell} vba function to work with the data.
+\end{itemize}
+
+If anyhow, you still MUST use Excel, here are some tricks:
+\begin{itemize}
+\item Excel
+\begin{itemize}
+\item Pivot table allows to create simple "*-by" summary of your data
+(e.g. "sum-by region", "count-by country").
+\item Filter function and deleting duplicate elements are great built-in
+tools.
+\item \texttt{vlookup}: the best way to reproduce the behavior of hash-map in Excel.
+\end{itemize}
+\item VBA
+\begin{itemize}
+\item Record macro is your best friend.
+\item Turn off display updating when running macros.
+\item If possible, work with arrays in memory and not cells on the
+spreadsheet.
+\item Use Excel functions whenever possible.
+\item Include Microsoft.Scripting module to get hash-maps (associative
+arrays).
+\item When filtering data, use the \texttt{filter} function from Excel with the
+correct parameters.
+\end{itemize}
+\end{itemize}
+
+\section{Intermediate topics}
+\label{sec:orgd859b7e}
+I consider here some intermediate topics
+
+\subsection{Ubuntu}
+\label{sec:org58ce54b}
+I don't have much to add about which OS you should use. You can argue that
+most paid job require some knowledge of C\# and the .Net platform.
+Nonetheless, most open source tools have been thoroughly tested on Linux
+machines, hence you will avoid some subtle bugs by adopting Ubuntu.
+
+\subsection{Emacs}
+\label{sec:orgb8de454}
+
+I would like use the same tool at work and at home, as I want to be able to
+improve my skills continuously, especially when I am working (and we do use
+Emacs at my working place now).  The alternative solution is to use the
+IDEs.  Nevertheless, most of them are quite complicated (which is also true
+for Emacs) and the possibilities of customizing them are quite limited.
+
+Moreover, using a bare text editor force professionals to understand the
+engineering process behind their products when compiling.
+
+One of the best argument, I have heard about using Emacs are the following:
+\begin{itemize}
+\item Emacs has been here for the past 30 years, and will probably still be
+there in the next 30 years. One of the reason why it could disappear is
+the non-integration of webkit (but we will figure out how to make it).
+\item True integration with UNIX tools: You will find yourself using grep,
+find, top without knowing.
+\item A wonderful way to learn to code as well.
+\item Most importantly: the feeling of mastery. Every day, I learn something
+new about Emacs and I am sure I can use it in my workflow. Otherwise I
+learn something about elisp (which is never bad). Overall, it made me a
+better programmer as well as it gave me the feeling about being able to
+tackle all challenge with a common set of tools.
+\end{itemize}
+
+\subsection{Document generation}
+\label{sec:org96aa316}
+A good option in combination with Emacs is to use \textbf{Org-mode} for \textbf{literate
+programming}. Org-mode is an equivalent of markdown (and is also supported
+by pandoc). Nevertheless, it provides a better integration with Emacs and
+its default HTML and \LaTeX{} output hare nicer. Bonus: it is a really good
+TODO list remainder.
+
+Literate programming is also an interesting topic: usually, programmers
+write code, filled with comments, but this could or should be
+reverse. Authors should write text with code blocks describing their
+views. Org-mode totally support this type of document. For a good
+alternative, search for \texttt{rmarkdown}.
+
+\subsection{Python}
+\label{sec:orgad0ab13}
+The \textbf{Scipy} stack includes most of what you will ever need to replace
+matlab: numpy (approximately matrix calculation), scipy (optimization and
+numerical mathematics), ipython (a better repl/interactive console), pandas
+(data.frame like data structure), simpy (symbolic mathematics) and nose (for
+testing). \textbf{pandas} is the most important package to learn for data analysis.
+
+\textbf{Scikit-learn} offers most machine learning algorithm for statistical
+prediction. \textbf{Seaborn} is a great abstraction over matplotlib for plotting
+*data.
+
+\subsection{R}
+\label{sec:orga4ad457}
+There are several types of R packages: packages providing statistical
+models, others providing infrastructures for performing analysis. I will
+give you some advice for the second type of packages.
+
+\textbf{simsalapar} abstract and provide a great framework for computing simulation
+over grids of parameters.
+
+\textbf{data.table} is probably the most interesting packages. It offers a C++
+implementation of the data.frame data structure and provides incredible
+speed up. The \texttt{fread} function also accelerate incredibly the loading of
+\emph{csv} data. One of the drawback is the way it uses expression and is maybe
+not the most natural way for R programmers to use it.
+
+\textbf{ggplot2} and \textbf{lattice} make the plotting experience of R even
+sweeter. lattice gives quick visualization for faceting (e.g. xy-plot for
+\emph{x} against \emph{y} grouped by \emph{z}), whereas ggplot2 wraps the \textbf{grid} package to
+make highly customized data visualization. lattice is often faster than
+ggplot2, but ggplot2 is maintained and its output can customized.
+
+\textbf{caret} abstracts the best practices of data analysis to allow more
+flexibility. It offers a framework to compare and average models and perform
+the split of data (test-training-evaluation set) automatically.
+
+\textbf{parallel} come by default in R. I suggest to learn how to write parallel
+code with clusters and not with multiple cores. The reason is that forking
+copies completely your master thread which could cause some problem if you
+have a finite amount of RAM.
+
+\textbf{timeDate} from the RiskMetrics team is a really appreciable abstraction of
+calendar issue in the financial world.
+
+\textbf{regular expression} (or \textbf{regex}) are supported by default in R, learn about
+them, they are life savers!
+
+\textbf{magrittr} provides the pipe operator \texttt{\%>\%}. More or less, it allows to read
+expression from left to right, compared to inside to outside:
+\begin{verbatim}
+x %>% f %>% g(y) == g(f(x), y) # TRUE
+\end{verbatim}
+
+\subsection{Statistics: Repeat the basics}
+\label{sec:org1c0313d}
+I love shiny statistical learning methods, I mean, I do love them (neural
+networks, lasso/ridge regression, random forest, copula modeling). However, I
+am convinced that for mastery, one do have to repeat the basics often and to
+have solid understanding of what \emph{randomness} means in statistics.
+
+\section{Things that exists which I never used professionally}
+\label{sec:org385b151}
+As any curious person, I try to surf on the net and see what could be
+interesting to add to my set of skills. Unfortunately, I could never
+professionally use the tools which I am describing below, but I wanted to
+point at them for the sake of completion.
+
+\subsection{Linear Algebra}
+\label{sec:orgd2850f4}
+Matrix notation is certainly helpful. Nevertheless, for advanced numerical
+computations and optimization, \emph{vectorization} (using values locations in
+memory to perform calculation) is primordial. I unfortunately never had to
+deal with such constraints, but it would not hurt to have an overview about
+LAPACK, BLAS and ATLAS.
+
+\subsection{C, C++ and Cuda}
+\label{sec:org3c7abdc}
+\textbf{C} and \textbf{C++} are almost the \emph{de facto} way to improve R or python code and
+\textbf{Cuda} gives access to the power of your graphic card for computing.
+I do not have a strong opinion of them, I may be too inexperienced.
+
+What I do know is that for short function, these language are really
+manageable and quit elegant as well.
+
+\subsection{Java (JVM), Clojure, Scala and Jython}
+\label{sec:orgf4c7e19}
+No one would argue that Java is used everywhere. However, the language has
+its constraints on its syntax that makes it quite not enjoyable.
+
+I really appreciate \textbf{Clojure} for its simplicity and for its tradition for
+Lisp, however, one will more easily find a job with \textbf{Scala}.
+
+As last resort, \textbf{Jython}, the JVM implementation of python, can also help.
+
+\subsection{Javascript and Clojurescript}
+\label{sec:org4996a83}
+Interactive data visualization is the future and your browser is probably
+one of the best tool to display data. \textbf{D3.js} is one of the best framework
+and \textbf{metricsgraphics.js} wraps around it in order to abstract some of the
+complexities.
+
+Clojure is a wonderful lisp dialect, and Clojurescript uses the same
+semantics, but targets the Javascript instead of the JVM. Even though I am
+still in the process of experimenting Clojurescript, I am certain that it
+will enhance the maintainability and performance of my code.
+
+\subsection{Python}
+\label{sec:org25a75c5}
+\textbf{Cython} seems to be a nice start for optimizing your python code. If you
+really want to go into new fields, \textbf{Tensorflow} from Google is a good start.
+
+\subsection{R}
+\label{sec:orge4749c0}
+\textbf{Rcpp} is a wonderful way to interact R with C++.
+\end{document}

@@ -1,0 +1,65 @@
+#+AUTHOR: David Pham
+#+TITLE: You work in Python and R, why Clojure be next?
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+# +HTML_HEAD: <style> pre.src {background: #3F3F3F; color: #DCDCCC;} </style>
+
+* Introduction
+
+** Personal stories
+
+* Context
+
+** Qualities of R and Python
+
+** Challenges
+
+The future is polyglot, see GraalVM. Scripting languages and compiled language
+targeting either native or virtual machine are now required to get even junior
+position.
+
+* What is missing?
+
+* Why Clojure?
+
+Objectively, the language is small, extremely well designed and has a lot of
+core function to manipulate your usual data structure. The community strongly
+encourage REPL driven development (i.e. an experience similar to R Studio and
+interactively evaluate your code in the console).
+
+** It will make a better programmer
+
+   - Stories about lessons from Clojure and ClojureScript.
+   - Simplicity
+   - Reflection about state and mutability and referential transparency.
+   - Designing
+   - Code structure
+   - Asynchronous code
+
+** It provides orthogonal weapons for data analysis
+
+   - Big data
+   - Web apps
+   - UIs
+   - Powerful backend
+   - Database
+   - Specs and generative testing
+   - Other virtual machines
+   - Low level code
+   - You can still leverage code in your previous language thanks to
+     libpython-clj and clojisr (or GraalVM).
+
+** Costs
+
+   - Exotic and misunderstood language (it is a Lisp language after all),
+     mainstream programmers will probably misunderstand its value proposition.
+   - Smaller community compared to R and python, but it is still one of the
+     most popular language on the JVM (after Java and Kotlin [mainly because of
+     Android], on par with Scala).
+   - Read source code more often.
+   - It does not force you to learn a type language (but =clojure.spec= is more
+     powerful anyways).
+   - Dislike to write code in host languages (or any other language actually).
+   - Some learning of the host languages and their tooling might be helpful
+     (maven and npm for dependency repository).
+
+* Conclusion

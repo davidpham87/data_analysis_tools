@@ -1,14 +1,15 @@
 #+AUTHOR: David Pham
 #+TITLE: Data analysis tools
-#+SETUPFILE: ~/.emacs.d/packs/lang-code/lib/org-html-themes/setup/theme-readtheorg.setup
-#+HTML_HEAD: <style> pre.src {background: #3F3F3F; color: #DCDCCC;} </style>
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+
+# +HTML_HEAD: <style> pre.src {background: #3F3F3F; color: #DCDCCC;} </style>
 
 * Introduction
 
   A friend ask me what I would recommend to learn if someone wanted to join the
-  field of quantitative finance, machine learning or statistics (the basic
-  skills are similar). He also asked to make some small remarks on why these
-  tools were relevant.
+  field of quantitative finance, machine learning or statistics/data science
+  (the basic skills are similar). He also asked to make some small remarks on
+  why these tools were relevant.
 
   First of all, this is only a matter of personal taste and they are a lot of
   reason why someone would learn and act differently, but my hope is that I can
@@ -24,7 +25,7 @@
    If I may give only one advice, it would be the following:
 
    #+BEGIN_QUOTE
-   DO NOT REINVENT THE WHEEL.
+   Do Not Reinvent The Wheel.
    #+END_QUOTE
 
    Search hard for a solution of a problem, or try to shape a problem into a
@@ -52,13 +53,16 @@
     with files.
     [[https://git-scm.com/][Git homepage]]
   + *Pandoc, markdown*: write content and not the formatting. Markdown and pandoc
-    automate most of the editing tasks.
-    [[http://pandoc.org/][Pandoc homepage]]
+    automate most of the editing tasks. [[http://pandoc.org/][Pandoc homepage]]
   + *Python*: your first and most fun programming language. Learn to create
-    programs (not class) in a funny and interactive fashion.
-    [[https://www.python.org/][Python homepage]]
-  + *R*: your friend for visualizing and analyzing data.
-    [[https://cran.r-project.org/][R CRAN homepage]] and [[https://www.rstudio.com/][RStudio IDE]] (always handy when starting with R).
+    programs (not types, objects or classes) in a funny and interactive
+    fashion.  [[https://www.python.org/][Python homepage]]
+  + *R*: your friend for visualizing, analyzing data and getting trustworthy
+    statistical estimates. [[https://cran.r-project.org/][R CRAN homepage]] and [[https://www.rstudio.com/][RStudio IDE]] (always handy when
+    starting with R).
+  + *Clojure*: your ultimate language, no joke. It will wrap every concept you
+    learned before and bring them to the next level. I explain why it should be
+    your next language here.
 
 * Links
 ** Emacs
@@ -80,15 +84,19 @@
    + [[http://www.scipy.org/][Scipy]]
    + [[http://scikit-learn.org/][Scikit]]
    + [[http://stanford.edu/~mwaskom/software/seaborn][Seaborn]]
+   + Deep learning library.
 
 ** R
    + [[http://arxiv.org/pdf/1309.4402v1][Simsalapar]] documentation
    + [[http://blog.rstudio.org/][RStudio blog]]: a good point for looking at best computer practices.
 
+** Clojure and ClojureScript
+   + [[https://clojure.org/][Clojure.org]] and their youtube channel.
+
 ** Blog post
-   + [[https://michaelochurch.wordpress.com/2012/07/27/six-languages-to-master/][Language to master]], when beginning to learn software engineering.
-   + [[https://michaelochurch.wordpress.com/2012/08/15/what-is-spaghetti-code/][Spaghetti code]], what to avoid in bigger projects.
-   + [[https://michaelochurch.wordpress.com/2013/01/09/ide-culture-vs-unix-philosophy/][IDE vs Unix philosophy]], or why Emacs is awesome. Make small things, that do one thing well.
+   + [[https://web.archive.org/web/20140730035018/https://michaelochurch.wordpress.com/2012/07/27/six-languages-to-master/][Language to master]], when beginning to learn software engineering.
+   + [[https://web.archive.org/web/20141224174359/https://michaelochurch.wordpress.com/2012/08/15/what-is-spaghetti-code/][Spaghetti code]], what to avoid in bigger projects.
+   + [[https://web.archive.org/web/20141224182530/https://michaelochurch.wordpress.com/2013/01/09/ide-culture-vs-unix-philosophy][IDE Culture vs Unix Philosophy]], or why Emacs is awesome. Make small things, that do one thing well.
    + [[http://www.joelonsoftware.com/articles/Unicode.html][Unicode]]: If you don't want to smash your head against the wall because of accent.
 
 * Details
@@ -371,20 +379,23 @@ I consider here some intermediate topics
    its constraints on its syntax that makes it quite not enjoyable.
 
    I really appreciate *Clojure* for its simplicity and for its tradition for
-   Lisp, however, one will more easily find a job with *Scala*.
+   Lisp, however, one will more easily find a job with *Scala*. [Note: I used
+   Clojure professionally and it rocks].
 
-   As last resort, *Jython*, the JVM implementation of python, can also help.
+   As last resort, *Jython*, the JVM implementation of python, can also help
+   (but only support of 2.7 syntax).
 
-** Javascript and Clojurescript
+** Javascript and ClojureScript
    Interactive data visualization is the future and your browser is probably
    one of the best tool to display data. *D3.js* is one of the best framework
    and *metricsgraphics.js* wraps around it in order to abstract some of the
    complexities.
 
-   Clojure is a wonderful lisp dialect, and Clojurescript uses the same
-   semantics, but targets the Javascript instead of the JVM. Even though I am
-   still in the process of experimenting Clojurescript, I am certain that it
-   will enhance the maintainability and performance of my code.
+   Clojure is a wonderful lisp dialect, and ClojureScript uses the same
+   semantics, but targets the Javascript instead of the JVM. If you need to
+   make a choice, use ClojureScript, even if the path is harder, it will payoff
+   immensely [especially if you learn ReactJs]. [Note: I used ClojureScript
+   professionally and I never had that much fun in project].
 
 ** Python
    *Cython* seems to be a nice start for optimizing your python code. If you
